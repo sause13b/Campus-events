@@ -15,9 +15,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from register import views
+from register import views as register_views
+from personalarea import views as personalarea_views
+
+
+
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('register/', views.registr),
+    path('register/', register_views.registr),
+    path('personalarea/', personalarea_views.show_personalarea),
 ]
