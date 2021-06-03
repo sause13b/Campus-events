@@ -14,9 +14,12 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import include, path
 from register import views as register_views
-from personalarea import views as personalarea_views
+from django.conf import settings
+from django.conf.urls.static import static
+
+
 
 
 
@@ -25,5 +28,9 @@ from personalarea import views as personalarea_views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('register/', register_views.registr),
-    path('personalarea/', personalarea_views.show_personalarea),
+    path('personalarea/', include('personalarea.urls')),
 ]
+
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
+
