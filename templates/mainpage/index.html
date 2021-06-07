@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" href="indexcss.css">
+<head>
+    <meta charset="UTF-8">
+    <title>Эвенты на кампусе</title>
+    <script src="map_scripts.js"></script>
+</head>
+<body>
+    <article>
+        <section class="side_menu">
+            <a href="#" class="home">
+                <img src="icons/home.png">
+                <span>Личный кабинет</span></a>
+            <a href="#" class="btn">Добавить эвент</a>
+            <div style="border-bottom: 1px solid lightgrey; margin-bottom: 50px">
+                <p class="tags_list">
+                    Фильтр эвентов по тегам:
+                    <span class="tag">#настолки</span>
+                    <span class="tag">#гитара</span>
+                </p>
+            </div>
+            <p>
+                <h3 class="events_label">Близжайшие эвенты:</h3>
+                <ul class="events_list">
+                    <li class="event"><span>D&D</span><span>06.06.2021</span></li>
+                    <li class="event"><span>Играю на гитаре</span><span>06.06.2021</span></li>
+                </ul>
+            </p>
+            <p class="map_legend">
+                Легенда карты(Нажмите, чтобы скрыть ненужные маркеры):
+                <p class="legend_unit"><img src="icons/orange.png"> - Жилые корпуса</p>
+                <p class="legend_unit"><img src="icons/green.png"> - Учебные корпуса</p>
+                <p class="legend_unit"><img src="icons/red.png"> - Эвенты</p>
+            </p>
+        </section>
+
+        <section class="map_container">
+            <div id="map"></div>
+        </section>
+    </article>
+</body>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC_qdFH2u4nfmDKZn5O4kq1wswaAstWolE&callback=my_map" async defer></script>
+</html>
