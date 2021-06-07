@@ -29,6 +29,7 @@ urlpatterns = [
     path('registerpage/', include('register.urls')),
     path('personalarea/', include('personalarea.urls')),
     path('eventform/', include('formofevent.urls')),
+    path('createevent/', include('createEvent.urls')),
     path('', include('welcome.urls')),
 
 ]
