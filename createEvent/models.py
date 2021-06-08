@@ -1,11 +1,12 @@
 from django.db import models
 
 
-class Create(models.Model):
+class Event(models.Model):
     CATEGORY = (
         ('Официальный', 'Официальный'),
         ('Неофициальный', 'Нефициальный'),
                 )
+
     title = models.CharField(max_length=200, null=True)
     info = models.TextField(null=True)
     category = models.CharField(max_length=200, null=True, choices=CATEGORY)
@@ -14,3 +15,9 @@ class Create(models.Model):
     vk = models.CharField(max_length=200, null=True)
     mail = models.CharField(max_length=200, null=True)
     phone = models.CharField(max_length=11, null=True)
+
+    def create_event(self):
+        self.save()
+
+    def __str__(self):
+        return self.title
