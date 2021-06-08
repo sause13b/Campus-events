@@ -60,7 +60,7 @@ function my_map() {
             category: events[i][4],
             title: events[i][1],
             icon: {
-                url: 'icons/red.png',
+                url: '/static/map/icons/red.png',
                 scaledSize: new google.maps.Size(45, 45),
             },
         });
@@ -78,10 +78,10 @@ function my_map() {
         let newLatLng = new google.maps.LatLng(corps[i][1], corps[i][2]);
         let url_;
         if (i <= 14) {
-            url_ = 'icons/orange.png';
+            url_ = '/static/map/icons/orange.png';
         }
         if (i > 14) {
-            url_ = 'icons/green.png'
+            url_ = '/static/map/icons/green.png'
         }
         let marker = new google.maps.Marker ({
             position: newLatLng,

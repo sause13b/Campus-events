@@ -1,16 +1,18 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
-<link rel="stylesheet" href="indexcss.css">
+<link rel="stylesheet" href="{% static '/map/css/indexcss.css' %}">
 <head>
     <meta charset="UTF-8">
     <title>Эвенты на кампусе</title>
-    <script src="map_scripts.js"></script>
+    <script src="{% static '/map/js/map_scripts.js' %}"></script>
 </head>
 <body>
     <article>
         <section class="side_menu">
             <a href="#" class="home">
-                <img src="icons/home.png">
+                <img src="{% static '/map/icons/home.png' %}">
                 <span>Личный кабинет</span></a>
             <a href="#" class="btn">Добавить эвент</a>
             <div style="border-bottom: 1px solid lightgrey; margin-bottom: 50px">
@@ -29,9 +31,9 @@
             </p>
             <p class="map_legend">
                 Легенда карты(Нажмите, чтобы скрыть ненужные маркеры):
-                <p class="legend_unit"><img src="icons/orange.png"> - Жилые корпуса</p>
-                <p class="legend_unit"><img src="icons/green.png"> - Учебные корпуса</p>
-                <p class="legend_unit"><img src="icons/red.png"> - Эвенты</p>
+                <p class="legend_unit"><img src="{% static '/map/icons/orange.png' %}"> - Жилые корпуса</p>
+                <p class="legend_unit"><img src="{% static '/map/icons/green.png' %}"> - Учебные корпуса</p>
+                <p class="legend_unit"><img src="{% static '/map/icons/red.png' %}"> - Эвенты</p>
             </p>
         </section>
 
