@@ -1,17 +1,26 @@
 from django.shortcuts import render
+from django.core.serializers import serialize
+from django.core.serializers.json import DjangoJSONEncoder
+from createEvent.models import *
+import json
 
 
 def render_map(request):
-    test_tags = ['#настолки', '#гитара']
-    test_next_events = [
-        {'name': 'D&D', 'date': '06.06.2021'},
-        {'name': 'Играю на гитаре', 'date': '06.06.2021'}
-    ]
-    test_events = [
-        ['0', 'D&D', 43.03267057306809, 131.89137918437376, 'настолки'],
-        ['1', 'Играю на гитаре', 43.028535518689694, 131.8978870599067, 'гитара'],
-    ];
+    tags = Tag.objects.all()
+    events = Event.objects.all().values()
+    next_events = events[:10]
+    events = json.dumps(list(events), cls=DjangoJSONEncoder)
+    ev = json.loads(events)
+    for tag in tags:
+        events_tag = Event.objects.filter(tags__name=tag)
+        for event in events_tag:
+            id = event.id
+            i = 0
+            for dict in ev:
+                if dict["id"] == id:
+                    ev[i]['tags'] = tag.name
+                i += 1
 
-    data = {'tags': test_tags, 'next_events': test_next_events, 'events': test_events}
-
+    events = json.dumps(ev)
+    data = {'tags': tags, 'next_events': next_events, 'events': events}
     return render(request, 'map/index.html', data)

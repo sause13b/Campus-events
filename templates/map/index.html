@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <link rel="stylesheet" href="{% static '/map/css/indexcss.css' %}">
-<script type="text/javascript"> var events = ({{ events | safe }});</script>
+<script type="text/javascript">var events =  JSON.parse('{{ events | safe }}');</script>
 <script src="{% static '/map/js/map_scripts.js' %}"></script>
 <head>
     <meta charset="UTF-8">

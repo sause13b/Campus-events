@@ -46,15 +46,15 @@ function my_map() {
         maxZoom: 19,
         mapId: 'b592755503adfa8a',
     }
-    var map = new google.maps.Map(document.getElementById("map"), options);
 
+    var map = new google.maps.Map(document.getElementById("map"), options);
     for(let i = 0; i < events.length; i++) {
-        let newLatLng = new google.maps.LatLng(events[i][2], events[i][3]);
+        let newLatLng = new google.maps.LatLng(events[i]['lat'], events[i]['lng']);
         let marker = new google.maps.Marker({
             position: newLatLng,
             map: map,
-            category: events[i][4],
-            title: events[i][1],
+            category: events[i]['tags'],
+            title: events[i]['name'],
             icon: {
                 url: '/static/map/icons/red.png',
                 scaledSize: new google.maps.Size(45, 45),
@@ -101,7 +101,7 @@ function my_map() {
     for(let i = 0; i < tags.length; i++) {
         tags[i].addEventListener("click", function(){
             this.classList.toggle('clicked_tag');
-            let tag = tags[i].textContent.slice(1);
+            let tag = tags[i].textContent;
             var visibility = true
             if (this.classList.contains('clicked_tag') == true) {
                 visibility = false
@@ -120,7 +120,7 @@ function my_map() {
     var next_events = document.getElementsByClassName("event");
     for(let i = 0; i < next_events.length; i++) {
         next_events[i].addEventListener("click", function(){
-            let name = this.textContent.slice(0, -10);
+            let name = this.firstChild.textContent;
             this.classList.add('clicked_event');
             for(let sibling of this.parentNode.children) {
                 if (sibling != this) {
