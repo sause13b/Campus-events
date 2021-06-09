@@ -1,287 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+{% load static %}
+<html lang="rus">
     <head>
         <meta charset="UTF-8">
+        <link rel="stylesheet" href={% static "createEvent/css/createStyle.css" %}>
         <title>Create event</title>
-
-        <style>
-            * {
-            padding: 0;
-            margin: 0;
-            border: 0;
-            }
-
-            :before,*:after{
-            -moz-box-sizing: border-box;
-            -webkit-box-sizing: border-box;
-            box-sizing: border-box;
-            }
-
-            :focus,:active{outline: none;}
-            a:focus,a:active{outline: none;}
-
-            nav,footer,header,aside{display: block;}
-
-            html,body{
-                height: 100%;
-                width: 100%;
-                line-height: 1;
-                font-size: 14px;
-                -ms-text-size-adjust: 100%;
-                -moz-text-size-adjust: 100%;
-                -webkit-text-size-adjust: 100%;
-                }
-
-            input,button,textarea{font-family:inherit;}
-
-            input::-ms-clear{display: none;}
-            button{cursor: pointer;}
-            button::-moz-focus-inner {padding:0;border:0;}
-            a, a:visited{text-decoration: none;}
-            a:hover{text-decoration: none;}
-            ul li{list-style: none;}
-            img{vertical-align: top;}
-
-            h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight: 400;}
-
-            .wrapper{
-                width: 100%;
-                height: 100%;
-                background: whitesmoke;
-                }
-
-            main{
-                position: relative;
-                width: 900px;
-                height: 100%;
-                min-width: 1000px;
-                margin: 0 auto 0 auto;
-                border-radius: 15px;
-                box-shadow: 0 0 10px 5px rgba(0, 10, 10, 1);
-                }
-
-            header{
-                display: flex;
-                flex-direction: row;
-                width: 100%;
-                min-height: 50px;
-                }
-
-            .back_button_container{
-                display: flex;
-                justify-content: space-evenly;
-                flex-direction: row;
-                align-items: center;
-                width: 20%;
-                height: 50px;
-                }
-
-            .back_button_shadow{
-                display: flex;
-                justify-content: space-around;
-                align-items: center;
-                border-radius: 15px;
-                text-align: center;
-                border: 1px solid black;
-                width: 50px;
-                height: 25px;
-                background-color: cornflowerblue;
-                }
-
-            .title_container{
-                display: flex;
-                justify-content: space-around;
-                flex-direction: row;
-                align-items: center;
-                width: 60%;
-                height: 50px;
-                }
-
-            .title{
-               text-align: center;
-                font-style: italic;
-                }
-
-            .lk_button_container{
-                display: flex;
-                justify-content: space-evenly;
-                flex-direction: row;
-                align-items: center;
-                width: 20%;
-                height: 50px;
-                }
-
-            .lk_button_shadow{
-                display: flex;
-                justify-content: space-around;
-                align-items: center;
-                border-radius: 15px;
-                text-align: center;
-                border: 1px solid black;
-                width: 50px;
-                height: 25px;
-                background-color: cornflowerblue;
-                }
-
-            .main_content{
-                display: flex;
-                flex-direction: row;
-                height: 86%;
-                width: 100%;
-                border-top: solid 1px gray;
-                border-bottom: solid 1px gray;
-                }
-
-            .left_side{
-                display: flex;
-                flex-direction: column;
-                height: 100%;
-                width: 35%;
-                border-right: solid 1px gray;
-                }
-
-            .left_text_container{
-                display: flex;
-                justify-content: space-evenly;
-                flex-direction: column;
-                }
-
-            .text_location{
-                align-self: center;
-                text-align: center;
-                width: 35%;
-
-                }
-
-            .flex_block{
-                display: flex;
-                }
-
-            .address_container{
-                text-align: center;
-                width: 35%;
-                margin: 1px;
-                }
-
-            .address_value{
-                width: 65%;
-                margin: 1px;
-                }
-
-            .right_side{
-                display: flex;
-                flex-direction: column;
-                height: 100%;
-                width: 65%;
-                }
-
-            .name_container{
-                text-align: center;
-                align-self: center;
-                width: 40%;
-                }
-
-            .name_value{
-                width: 60%;
-                }
-
-            .main_text_container{
-                width: 100%;
-                height: max-content;
-                }
-
-            footer{
-                position: absolute;
-                width: 100%;
-                height: 5%;
-                bottom: 0;
-                }
-
-            .footer_container {
-                display: flex;
-                justify-content: center;
-                }
-
-            .members_container{
-                width: 68%;
-                margin: 1px;
-                }
-
-            .members_value{
-                width: 20%;
-                margin: 1px;
-                }
-
-            .field_name{
-                width: 50%;
-                margin: 1px;
-                }
-
-            .field_value{
-                width: 50%;
-                margin: 1px;
-                }
-
-            .contacts_container{
-                margin: 1px;
-                }
-
-            .right_img_container{
-                width: 100%;
-                }
-
-            .enter_picture{
-                margin-left: 45%;
-                margin-top: 50px;
-                }
-
-            .enter_description{
-                margin-left: 16%;
-                resize: none;
-                }
-
-            .create_button_container{
-                display: flex;
-                justify-content: space-evenly;
-                flex-direction: row;
-                align-items: center;
-                margin-top: 20px;
-                margin-bottom: 20px;
-                }
-
-            .create_button_shadow{
-                display: flex;
-                justify-content: space-around;
-                align-items: center;
-                border-radius: 15px;
-                text-align: center;
-                border: 1px solid black;
-                width: 130px;
-                height: 25px;
-                background-color: cornflowerblue;
-                }
-
-            .tags_container{
-                width: 40%;
-                height: content-box;
-                margin-left: 233px;
-                margin-right: 233px;
-                margin-top: 20px;
-                margin-bottom: 20px;
-                }
-
-            .tags_name{
-                width: 50%;
-                }
-
-            .tags_checkboxes{
-                width: 50%;
-                }
-
-            .tags_value{
-                display: flex;
-                }
-        </style>
     </head>
     <body>
         <div class="wrapper">
@@ -313,7 +36,9 @@
 
 
                         <div class="left_img_container">
-                            <img src="#" width="100%" height="300px">
+                            <div class="left_img">
+                                Блок для Карты
+                            </div>
                         </div>
 
                         <div class="left_text_container">
@@ -374,7 +99,7 @@
                     </div>
 
                     <div class="right_side">
-                        <div class = "flex_block">
+                        <div class = "name_of_event">
                             <div class="name_container">
                                 <p>Введите название вашего мероприятия:</p>
                             </div>
@@ -385,36 +110,24 @@
                         </div>
 
                         <div class="right_img_container">
-                            <input type = "image" class = "enter_picture">
+                            <div class="right_img">
+                                Блок для изображения
+                            </div>
                         </div>
 
                         <div class="main_text_container">
-                            <p align = "center">
+                            <p class="text_description">
                                 <b>Введите описание мероприятия:</b>
                             </p>
-                            <textarea cols = "70" rows = "20" class = "enter_description">Ваше описание...</textarea>
+                            <textarea cols = "70" rows = "20" class = "main_text">Ваше описание...</textarea>
                         </div>
 
                         <div class = "tags_container">
-                            <p style = "align: center; margin-bottom: 10px;"><b>Выберите теги к мероприятию:</b></p>
-                            <ul>
-                                <li class = "tags_value">
-                                    <p class = "tags_name">Для двоих</p>
-                                    <input class = "tags_checkboxes" type = "checkbox">
-                                </li>
-                                <li class = "tags_value">
-                                    <p class = "tags_name">На улице</p>
-                                    <input class = "tags_checkboxes" type = "checkbox">
-                                </li>
-                                <li class = "tags_value">
-                                    <p class = "tags_name">В помещении</p>
-                                    <input class = "tags_checkboxes" type = "checkbox">
-                                </li>
-                                <li class = "tags_value">
-                                    <p class = "tags_name">Настольная игра</p>
-                                    <input class = "tags_checkboxes" type = "checkbox">
-                                </li>
-                            </ul>
+                            <p><select>
+                                <option selected="selected">Выберите тег</option>
+                                <option>Официальное</option>
+                                <option>Неофициальное</option>
+                            </select></p>
                         </div>
 
                         <div class = "create_button_container">
