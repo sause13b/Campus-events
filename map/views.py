@@ -11,6 +11,9 @@ def render_map(request):
     next_events = events[:10]
     events = json.dumps(list(events), cls=DjangoJSONEncoder)
     ev = json.loads(events)
+    for i in range(len(ev)):
+        ev[i]["tags"] = []
+
     for tag in tags:
         events_tag = Event.objects.filter(tags__name=tag)
         for event in events_tag:
@@ -18,7 +21,7 @@ def render_map(request):
             i = 0
             for dict in ev:
                 if dict["id"] == id:
-                    ev[i]['tags'] = tag.name
+                    ev[i]['tags'].append(tag.name)
                 i += 1
 
     events = json.dumps(ev)

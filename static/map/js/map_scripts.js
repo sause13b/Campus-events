@@ -107,7 +107,7 @@ function my_map() {
                 visibility = false
             }
             for(let i = 0; i < g_events.length; i++) {
-                if (g_events[i].category == tag) {
+                if (g_events[i].category.includes(tag)) {
                     g_events[i].setVisible(visibility);
                     if (g_events[i].visible != true) {
                         infowindow[i].close(map, g_events[i]);
@@ -177,7 +177,12 @@ function my_map() {
             }
             else if (name == 'Эвенты') {
                 for(let k = 0; k < tags.length; k++) {
-                    tags[k].classList.toggle('clicked_tag');
+                    if (img.classList.contains('gray_filter') == false) {
+                        tags[k].classList.remove('clicked_tag');
+                    }
+                    else {
+                        tags[k].classList.add('clicked_tag');
+                    }
                 }
                 for(let i = 0; i < g_events.length; i++) {
                     if (img.classList.contains('gray_filter') == false) {
@@ -215,4 +220,3 @@ function my_map() {
         }
     })
 }
-//TODO:
