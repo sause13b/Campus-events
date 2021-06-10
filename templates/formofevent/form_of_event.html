@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href={% static "formofevent/css/eventStyle.css" %}>
+    <script src="{% static '/formofevent/js/cur_event_map.js' %}"></script>
     <title>Name of event</title>
 </head>
 <body>
@@ -30,9 +31,7 @@
                         <p>Местоположение</p>
                     </div>
                     <div class="left_img_container">
-                        <div class="left_img">
-                            Блок для Карты
-                        </div>
+                        <div id="map"></div>
                     </div>
                     <div class="left_text_container">
                         <div class="address_container">
@@ -88,4 +87,5 @@
         </main>
     </div>
 </body>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC_qdFH2u4nfmDKZn5O4kq1wswaAstWolE&callback=my_map" async defer></script>
 </html>

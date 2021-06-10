@@ -4,6 +4,9 @@
     <head>
         <meta charset="UTF-8">
         <link rel="stylesheet" href={% static "createEvent/css/createStyle.css" %}>
+        <script> var token = '{{ csrf_token }}'</script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="{% static '/createEvent/js/create_js.js' %}"></script>
         <title>Create event</title>
     </head>
     <body>
@@ -36,9 +39,7 @@
 
 
                         <div class="left_img_container">
-                            <div class="left_img">
-                                Блок для Карты
-                            </div>
+                            <div id="map"></div>
                         </div>
 
                         <div class="left_text_container">
@@ -146,4 +147,5 @@
             </main>
         </div>
     </body>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC_qdFH2u4nfmDKZn5O4kq1wswaAstWolE&callback=my_map" async defer></script>
 </html>

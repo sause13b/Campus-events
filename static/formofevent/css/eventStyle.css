@@ -139,18 +139,14 @@
             width: 35%;
         }
         .left_img_container{
-            display: flex;
-            justify-content: space-evenly;
-            align-items: center;
-            width: 100%;
-            min-height: 300px;
+            flex: 1
         }
-        .left_img{
+        #map{
             margin: auto;
             height: 80%;
             width: 90%;
-            border-radius: 15px;
-            border: 1px solid black;
+            /*border-radius: 15px;*/
+            /*border: 1px solid black;*/
         }
         .address_container{
             width: 35%;
@@ -221,4 +217,14 @@
             display: flex;
             justify-content: center;
             font-style: italic;
+        }
+
+        a[href^="http://maps.google.com/maps"]{display:none !important}
+        a[href^="https://maps.google.com/maps"]{display:none !important}
+
+        .gmnoprint a, .gmnoprint span, .gm-style-cc {
+            display:none;
+        }
+        .gmnoprint div {
+            background:none !important;
         }
