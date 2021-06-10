@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href={% static "login/css/login.css" %}>
+    <title>login</title>
+</head>
+<body>
+    <form method="post" class="from-group">
+	{% csrf_token %}
+	{{ form }}
+	<p>Don't have an accoount? Create one <a href="/registerpage">here</a></p>
+	<button type="submit" class="btn btn-success">Login</button>
+    </form>
+</body>
+</html>

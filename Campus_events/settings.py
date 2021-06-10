@@ -124,6 +124,10 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+LOGIN_REDIRECT_URL = "/personalarea"
+
+LOGOUT_REDIRECT_URL = "/registerpage"
+
 STATIC_ROOT = os.path.join(BASE_DIR, '../static')
 
 STATICFILES_DIRS = [

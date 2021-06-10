@@ -31,7 +31,7 @@ urlpatterns = [
     path('eventform/', include('formofevent.urls')),
     path('createevent/', include('createEvent.urls')),
     path('map/', include('map.urls')),
-    path('', include('welcome.urls')),
+    path('', include("django.contrib.auth.urls")),
 
 ]
 
