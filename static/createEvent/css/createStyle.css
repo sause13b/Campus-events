@@ -209,6 +209,13 @@
                 border-radius: 15px;
                 border: 1px solid black;
                 }
+
+            .right_img_button{
+                width: 40%;
+                height: 90%;
+                margin-left: 30%;
+                }
+
             .name_container{
                 text-align: center;
                 align-self: center;
