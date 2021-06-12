@@ -10,11 +10,15 @@
     <title>Эвенты на кампусе</title>
 </head>
 <body>
+
     <article>
         <section class="side_menu">
-            <a href="#" class="home">
-                <img src="{% static '/map/icons/home.png' %}">
-                <span>Личный кабинет</span></a>
+            <div class="top_menu">
+                <a href="#" class="home">
+                    <img src="{% static '/map/icons/home.png' %}">
+                    <span>Личный кабинет</span></a>
+                <span><a href="{% url 'logout' %}">Выйти</a></span>
+            </div>
             <a href="#" class="btn">Добавить эвент</a>
             <div style="border-bottom: 1px solid lightgrey; margin-bottom: 50px">
                 <p class="tags_list">

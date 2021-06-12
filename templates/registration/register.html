@@ -7,17 +7,31 @@
     <title>Register</title>
 </head>
 <body>
-    <form method="POST" class="form-group">
-	{% csrf_token %}
-	{{ form }}
-	<button type="submit" class="btn btn-success">Register</button>
-        <p class="signin">
-         Already have an account?
-         <a href="/login">
-             Sign in
-         </a>
-         .
-     </p>
-    </form>
+    <div style="display: flex; align-items: center; justify-content: center; height: 100%">
+        <form method="POST" class="form-group">
+            <h1>Register</h1>
+            {% csrf_token %}
+                {{ form.username }}
+                {{ form.email }}
+                {{ form.password1 }}
+                {{ form.password2 }}
+                {{ form.errors }}
+            <button type="submit" class="btn btn-success">Register</button>
+                <p class="signin">
+                 Already have an account?
+                 <a href="{% url 'login' %}">
+                     Sign in
+                 </a>
+                 .
+             </p>
+        </form>
+    </div>
 </body>
+<script>
+    var form_fields = document.getElementsByTagName('input')
+		form_fields[1].placeholder='Username';
+		form_fields[2].placeholder='Email';
+		form_fields[3].placeholder='Enter password';
+		form_fields[4].placeholder='Re-enter Password';
+</script>
 </html>

@@ -67,16 +67,23 @@ a {
 }
 
 .home {
-    width: calc((0.2 * 100vw) - 50px);
-    margin: 0 auto;
+    flex-direction: row;
     display:flex;
     align-items: center;
-    justify-content: flex-end
+    justify-content: flex-start;
 }
 
 .home > img {
     height: 24px;
     width: 24px;
+}
+
+.top_menu  {
+    width: calc((0.2 * 100vw) - 50px);
+    margin: 0 auto;
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
 }
 
 .tags_list {

@@ -2,9 +2,10 @@ from django.shortcuts import render
 from django.core.serializers import serialize
 from django.core.serializers.json import DjangoJSONEncoder
 from createEvent.models import *
+from django.contrib.auth.decorators import login_required
 import json
 
-
+@login_required(login_url='login')
 def render_map(request):
     tags = Tag.objects.all()
     events = Event.objects.all().values()
