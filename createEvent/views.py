@@ -1,7 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
+from createEvent.forms import EventForm
 
 
 @csrf_exempt
@@ -11,6 +12,22 @@ def get_data(request):
         return HttpResponse('ok', status=200)
 
 
-def create_event(request):
-    return render(request, 'createEvent/create_event.html')
+def create(request):
+    if request.method == 'POST':
+        form = EventForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('map')
+
+    form = EventForm()
+
+    data = {
+        'form': form,
+    }
+
+    return render(request, 'createevent/create.html', data)
+
+
+def show_form(request):
+    return render(request, 'createevent/create_event.html')
 
