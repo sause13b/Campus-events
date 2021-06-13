@@ -3,5 +3,5 @@ from . import views
 
 
 urlpatterns = [
-    path('', views.show_form_of_event, name="show_form_of_event"),
+    path('<str:pk>', views.show_form_of_event, name="show_form_of_event"),
 ]

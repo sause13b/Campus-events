@@ -49,6 +49,7 @@ function my_map() {
 
     var map = new google.maps.Map(document.getElementById("map"), options);
     for(let i = 0; i < events.length; i++) {
+        let url = "/eventform/"+events[i]["id"]
         let newLatLng = new google.maps.LatLng(events[i]['lat'], events[i]['lng']);
         let marker = new google.maps.Marker({
             position: newLatLng,
@@ -61,9 +62,10 @@ function my_map() {
             },
         });
         g_events.push(marker);
-
+        let content = marker.title + '<br>' + '<a href="'+url+'">'+'Ссылка'+'</a>';
+            console.log(content)
         infowindow[i] = new google.maps.InfoWindow({
-            content: marker.title,
+            content: content,
         });
         marker.addListener("click", function() {
             infowindow[i].open(map, marker);

@@ -8,10 +8,10 @@
     <title>Document</title>
 </head>
 <body>
-    <form method="post">
+    <form method="POST">
         {% csrf_token %}
         {{ form.as_p }}
-        <input type="submit" class="btn btn-primary" value="Submit" onClick="window.history.back();return false;">
+        <button type="submit" class="btn btn-primary">Submit</button>
     </form>
 </body>
 </html>

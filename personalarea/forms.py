@@ -3,7 +3,7 @@ from django.contrib.auth.models import AbstractUser, User
 from django.contrib.auth.forms import UserChangeForm
 
 
-class EditProfileForm(UserChangeForm):
+class EditProfileForm(forms.ModelForm):
 
     class Meta:
         model = User
