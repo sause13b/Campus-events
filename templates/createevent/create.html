@@ -14,9 +14,9 @@
             <main>
                 <header>
                     <div class="back_button_container">
-                        <div class="back_button_shadow">
-                            <a class="back_button" href="{% url 'map' %}" style = "color: white;">Back</a>
-                        </div>
+                        <a class="button back_button_shadow" href="{% url 'map' %}">
+                            <div class="back_button" style = "color: white;">Back</div>
+                        </a>
                     </div>
 
                     <div class="title_container">
@@ -24,9 +24,9 @@
                     </div>
 
                     <div class="lk_button_container">
-                        <div class="lk_button_shadow">
-                            <a class="lk_button" href="#" style = "color: white;">LK</a>
-                        </div>
+                        <a class="button lk_button_shadow" href="#">
+                            <div class="lk_button" style = "color: white;">LK</div>
+                        </a>
                     </div>
                 </header>
 
@@ -49,7 +49,9 @@
                                 <div class = "address_value">
                                     <form method="POST" id="form-main">
                                         {% csrf_token %}
-                                        <input type = "text" name="address" size = "29">
+                                        {{ form.address }}
+                                        {{ form.lat }}
+                                        {{ form.lng }}
                                     </form>
                                 </div>
                             </div>
@@ -60,7 +62,7 @@
                                 </div>
 
                                 <div class = "members_value">
-                                        <input type = "text" name="members" size = "5" form="form-main">
+                                    {{ form.members }}
                                 </div>
                             </div>
 
@@ -74,7 +76,7 @@
                                 </div>
 
                                 <div class = "field_value">
-                                    <input type = "text" name="vk" size = "15" form="form-main">
+                                    {{ form.vk }}
                                 </div>
                             </div>
 
@@ -84,7 +86,7 @@
                                 </div>
 
                                 <div class = "field_value">
-                                    <input type = "text" name="email" size = "15" form="form-main">
+                                    {{ form.email }}
                                 </div>
                             </div>
 
@@ -94,7 +96,7 @@
                                 </div>
 
                                 <div class = "field_value">
-                                    <input type = "text" name="phone" size = "15" form="form-main">
+                                    {{ form.phone }}
                                 </div>
                             </div>
                         </div>
@@ -103,11 +105,11 @@
                     <div class="right_side">
                         <div class = "name_of_event">
                             <div class="name_container">
-                                <p>Введите название вашего мероприятия:</p>
+                                <p>Введите название мероприятия:</p>
                             </div>
 
                             <div class = "name_value">
-                                <input type = "text" name="name" size = "50" form="form-main">
+                                {{ form.name }}
                             </div>
                         </div>
 
@@ -125,32 +127,44 @@
                             <p class="text_description">
                                 <b>Введите описание мероприятия:</b>
                             </p>
-                            <textarea cols = "70" rows = "20" name="info" class = "main_text" form="form-main">Ваше описание...</textarea>
+                            {{ form.info }}
                         </div>
-
-                        <div class = "tags_container">
-                            <p><select form="form-main">
-                                <option selected="selected">Выберите тег</option>
-                                <option>Официальное</option>
-                                <option>Неофициальное</option>
-                            </select></p>
+                        <div style="display: flex; justify-content: center; align-items: center">
+                            <span style="margin-right: 20px">Дата проведения: </span>{{ form.date }}
                         </div>
-
+                        <div style="margin-right: auto; margin-left: auto; text-align: center">
+                            <p>Тэги:</p>
+                            <div style="max-height: 100px; overflow: scroll; max-width: 300px">
+                                {{ form.tags }}
+                            </div>
+                        </div>
+                            {% for field, errors in form.errors.items %}
+                                {% for error in errors %}
+                                    <p>{{ error }}</p>
+                                {% endfor %}
+                            {% endfor %}
                         <div class = "create_button_container">
-                            <div class = "create_button_shadow">
+                            <div class = "button create_button_shadow">
                                 <button class="create_button" type="submit" style = "color: white; border-radius: 15px; background-color: cornflowerblue" form="form-main">Создать мероприятие</button>
                             </div>
                         </div>
                     </div>
                 </div>
-
-                <footer>
-                    <div class="footer_container">
-                        <p> "Campus events" Team Product </p>
-                    </div>
-                </footer>
+{#                <footer>#}
+{#                    <div class="footer_container">#}
+{#                        <p> "Campus events" Team Product </p>#}
+{#                    </div>#}
+{#                </footer>#}
             </main>
         </div>
     </body>
+    <script>
+        var form_fields = document.getElementsByTagName('input')
+        for(let i = 0; i < form_fields.length; i++) {
+            form_fields[i].setAttribute("form", "form-main");
+        }
+        var date_field = document.getElementsByName('date')
+        date_field[0].type = 'date';
+    </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC_qdFH2u4nfmDKZn5O4kq1wswaAstWolE&callback=my_map" async defer></script>
 </html>

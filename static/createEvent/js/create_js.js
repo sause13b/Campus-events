@@ -25,8 +25,10 @@ function my_map() {
         ['Корпус F', 43.024417, 131.897502],
     ];
     var g_corps = []
+    var lat = document.getElementsByName("lat");
+    var lng = document.getElementsByName("lng");
 
-        const campus_bounds = {
+    const campus_bounds = {
         north: 43.041900,
         south: 43.017781,
         west: 131.866455,
@@ -71,8 +73,15 @@ function my_map() {
         })
         g_corps.push(marker);
     }
-
         var marker;
+        if(typeof lat[0].value !== 'undefined') {
+            let point = new google.maps.LatLng(lat[0].value, lng[0].value);
+            marker = new google.maps.Marker({
+                position: point,
+                map: map,
+            })
+        }
+
         map.addListener("click", function(e){
             if (marker == null) {
                 marker = new google.maps.Marker({
@@ -84,22 +93,23 @@ function my_map() {
                 marker.setPosition(e.latLng);
             }
             map.panTo(e.latLng);
-
-            $.ajax({
-                method: "POST",
-                url: 'get_data',
-                //csrfmiddlewaretoken: token,
-                data: {
-                    "lat": marker.getPosition().lat(),
-                    "lng": marker.getPosition().lng(),
-                },
-
-                // success: function(response) {
-                //     console.log(response, response.statusCode)
-                // },
-                // failure: function (response) {
-                //     console.log(response.statusCode);
-                // }
-            })
+            lat[0].value = marker.getPosition().lat();
+            lng[0].value = marker.getPosition().lng();
+            // $.ajax({
+            //     method: "POST",
+            //     url: 'get_data',
+            //     //csrfmiddlewaretoken: token,
+            //     data: {
+            //         "lat": marker.getPosition().lat(),
+            //         "lng": marker.getPosition().lng(),
+            //     },
+            //
+            //     // success: function(response) {
+            //     //     console.log(response, response.statusCode)
+            //     // },
+            //     // failure: function (response) {
+            //     //     console.log(response.statusCode);
+            //     // }
+            // })
         })
 }

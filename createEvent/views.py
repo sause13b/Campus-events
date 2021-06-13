@@ -13,13 +13,13 @@ def get_data(request):
 
 
 def create(request):
+    form = EventForm()
     if request.method == 'POST':
         form = EventForm(request.POST)
+        print(form.errors)
         if form.is_valid():
             form.save()
             return redirect('map')
-
-    form = EventForm()
 
     data = {
         'form': form,
