@@ -7,11 +7,18 @@
     <title>login</title>
 </head>
 <body>
-    <form method="post" class="from-group">
-	{% csrf_token %}
-	{{ form }}
-	<p>Don't have an accoount? Create one <a href="/registerpage">here</a></p>
-	<button type="submit" class="btn btn-success">Login</button>
-    </form>
+     <div style="display: flex; align-items: center; justify-content: center; height: 100%">
+        <form method="POST" class="form-group">
+        <h1>Log in</h1>
+        {% csrf_token %}
+            <input type="text" name="username" placeholder="Username">
+            <input type="password" name="password" placeholder="Password">
+            {% for message in messages %}
+                <p id="messages">{{ message }}</p>
+            {% endfor %}
+        <p>Don't have an account? Create one <a href="{% url 'register' %}">here</a></p>
+        <button type="submit" class="btn btn-success">Login</button>
+        </form>
+     </div>
 </body>
 </html>
