@@ -222,6 +222,35 @@ main
 	margin-left: 0px;
 	padding: 40px 40px 0px 40px;
 	background-color: #AAA3;
+	justify-content: space-between;
+}
+
+.edit_button
+{
+	background-color: #fff;
+	border: 2px solid #000;
+	border-radius: 20px;
+	font-size: 12px;
+	color: #00a;
+	text-decoration: none;
+	text-transform: uppercase;
+	width: 180px;
+	height: 35px;
+	display: block;
+	text-align: center;
+	line-height: 30px;
+	font-family: Arial, sans-serif;
+	position: relative;
+	transition: .5s;
+	overflow: hidden;
+	font-weight: bold;
+}
+
+.edit_button_area
+{
+	width: 220px;
+	height: 50px;
+	padding: 5px 20px 5px 20px;
 }
 
 .main_information_right_panel

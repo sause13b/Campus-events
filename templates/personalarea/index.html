@@ -36,6 +36,9 @@
 							<div class="profile_picture_information">
 								Макс размер и прочее
 							</div>
+                            <div class="edit_button_area">
+                                <a href="edit" class="edit_button">Изменить</a>
+                            </div>
 						</div>
 						<div class="main_information_right_panel">
 							<div class="profile_information_panel_row">
@@ -44,13 +47,13 @@
 										Логин:
 									</div>
 									<div class="profile_information_panel_column1_row">
+										Имя:
+									</div>
+									<div class="profile_information_panel_column1_row">
+										Фамилия
+									</div>
+									<div class="profile_information_panel_column1_row">
 										Дата рождения:
-									</div>
-									<div class="profile_information_panel_column1_row">
-										Пол:
-									</div>
-									<div class="profile_information_panel_column1_row">
-										Эл. почта ДВФУ:
 									</div>
 									<div class="profile_information_panel_column1_row">
 										Личный адрес эл. почты:
@@ -60,29 +63,27 @@
 									</div>
 								</div>
 								<div class="profile_information_panel_column2">
+                                    {% if user.is_authenticated %}
 									<div class="profile_information_panel_column2_row">
-										нигол
+										{{ user.get_username }}
 									</div>
 									<div class="profile_information_panel_column2_row">
-										бубстерс
+										{{ user.first_name }}
 									</div>
-									<div class="profile_information_panel_column2_row" style="display: flex; justify-content: space-around">
-                                        <div class="sex_selecter">
-                                            <input name="sex" type="radio" value="Мужской"> Мужской
-                                        </div>
-                                        <div class="sex_selecter" >
-                                            <input name="sex" type="radio" value="Женский"> Женский
-                                        </div>
+									<div class="profile_information_panel_column2_row">
+                                        {{ user.last_name }}
+									</div>
+									<div class="profile_information_panel_column2_row">
+
+										
+									</div>
+									<div class="profile_information_panel_column2_row">
+										{{ user.email }}
 									</div>
 									<div class="profile_information_panel_column2_row">
 										
 									</div>
-									<div class="profile_information_panel_column2_row">
-										
-									</div>
-									<div class="profile_information_panel_column2_row">
-										
-									</div>
+                                    {% endif %}
 								</div>
 							</div>
 						</div>

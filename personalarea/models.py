@@ -1,7 +1,10 @@
 from django.db import models
+from django.contrib.auth.models import AbstractUser, User
+
 
 # Create your models here.
 class PersonalAreaInformation(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     sex_choice = (
         ('М', 'Мужской'),
         ('Ж', 'Женский'),
@@ -12,3 +15,6 @@ class PersonalAreaInformation(models.Model):
     corporate_email = models.TextField()
     personal_email = models.TextField()
     mobile_phone = models.TextField()
+
+
+
