@@ -3,7 +3,6 @@ from django.contrib.auth.forms import UserChangeForm
 from .forms import EditProfileForm
 
 def edit_profile(request):
-
     if request.method == 'POST':
         print(request.method == 'POST')
         form = EditProfileForm(request.POST, instance=request.user)

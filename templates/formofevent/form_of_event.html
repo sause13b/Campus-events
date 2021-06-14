@@ -11,19 +11,19 @@
     <div class="wrapper">
         <main>
             <header>
-                <div class="back_button_container">
-                    <div class="back_button_shadow">
-                        <a class="back_button" href="/map">Back</a>
+                    <div class="back_button_container">
+                        <a class="button back_button_shadow" href="{% url 'map' %}">
+                            <div class="back_button" style = "color: white;">Back</div>
+                        </a>
                     </div>
-                </div>
                 <div class="title_container">
                     <p class="title">Campus Events</p>
                 </div>
-                <div class="lk_button_container">
-                    <div class="lk_button_shadow">
-                        <a class="lk_button" href="/personalarea">LK</a>
+                    <div class="lk_button_container">
+                        <a class="button lk_button_shadow" href="#">
+                            <div class="lk_button" style = "color: white;">LK</div>
+                        </a>
                     </div>
-                </div>
             </header>
             <div class="main_content">
                 <div class="left_side">
@@ -35,28 +35,31 @@
                     </div>
                     <div class="left_text_container">
                         <div class="address_container">
-                            <address>Адрес:</address>
-                        </div>
-                        <div class="members_container">
-                            <p class="members"> Участники:</p>
+                            <address>Адрес:<span>{{ event.address }}</span></address>
                         </div>
                         <div class="contacts_container">
                             <p class="contacts">Связь с организатором:</p>
                         </div>
+                        {% if event.vk %}
                         <div class="vk_container">
-                            <p class="vk">Вконтакте:</p>
+                            <p class="vk">Вконтакте: {{ event.vk }}</p>
                         </div>
+                        {% endif %}
+                        {% if event.email %}
                         <div class="mail_container">
-                            <p class="mail">Почта:</p>
+                            <p class="mail">Почта: {{ event.email }}</p>
                         </div>
+                        {% endif %}
+                        {% if event.phone %}
                         <div class="phone_container">
-                            <p class="phone">Телефон:</p>
+                            <p class="phone">Телефон: {{ event.phone }}</p>
                         </div>
+                        {% endif %}
                     </div>
                 </div>
                 <div class="right_side">
                     <div class="name_container">
-                        <p>Name_of_event</p>
+                        <p>{{ event.name }}</p>
                     </div>
                     <div class="right_img_container">
                         <div class="right_img">
@@ -66,24 +69,22 @@
                     <div class="main_text_container">
                         <div class="main_text">
                             <p>
-                                text text text text text text text text text text text
-                                text text text text text
-                                text text text text text text text text text text text
+                                {{ event.info }}
                             </p>
                         </div>
                     </div>
-                    <div class="member_button_container">
-                        <div class="member_button_shadow">
-                            <a class="member_button" href="#">Участвовать</a>
+                    <div class="create_button_container">
+                        <div class="button create_button_shadow">
+                            <a class="button" style="padding:10px 0px"href="#">Участвовать</a>
                         </div>
                     </div>
                 </div>
             </div>
-            <footer>
-                <div class="footer_container">
-                    <p> "Campus events" Team Product </p>
-                </div>
-            </footer>
+{#            <footer>#}
+{#                <div class="footer_container">#}
+{#                    <p> "Campus events" Team Product </p>#}
+{#                </div>#}
+{#            </footer>#}
         </main>
     </div>
 </body>

@@ -13,17 +13,17 @@ def get_data(request):
 
 
 def create(request):
+    user = request.user
     form = EventForm()
     if request.method == 'POST':
         form = EventForm(request.POST)
-        print(form.errors)
         if form.is_valid():
-            form.save()
+            new_form = form.save(commit=False)
+            new_form.creator = user
+            new_form.save()
             return redirect('map')
 
-    data = {
-        'form': form,
-    }
+    data = {'form': form}
 
     return render(request, 'createevent/create.html', data)
 

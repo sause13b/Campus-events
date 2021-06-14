@@ -135,7 +135,7 @@ header{
     flex-direction: row;
     height: calc(100vh - 55px);
     width: 100%;
-    border-top: solid 1px gray;
+    border-top: solid 1px lightgrey;
     /*border-bottom: solid 1px gray;*/
     }
 
@@ -144,7 +144,7 @@ header{
     flex-direction: column;
     height: 100%;
     width: 35%;
-    border-right: solid 1px gray;
+    border-right: solid 1px lightgrey;
     }
 
 .text_location{
@@ -220,7 +220,7 @@ header{
     height: 80%;
     width: 90%;
     border-radius: 15px;
-    border: 1px solid black;
+    border: 1px solid lightgrey;
     }
 
 .right_img_button{

@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.contrib.auth.models import AbstractUser, User
 
 class Tag(models.Model):
     name = models.CharField(max_length=200, null=True)
@@ -9,8 +9,8 @@ class Tag(models.Model):
 
 
 class Event(models.Model):
-    name = models.CharField(max_length=200)
-    address = models.CharField(max_length=200)
+    name = models.CharField(max_length=200, null=True)
+    address = models.CharField(max_length=200, null=True)
     members = models.CharField(max_length=4, null=True, blank=True)
     vk = models.CharField(max_length=200, null=True, blank=True)
     email = models.EmailField(null=True, blank=True)
@@ -20,12 +20,10 @@ class Event(models.Model):
     lng = models.FloatField(null=True, blank=True)
     date = models.DateField(null=True, blank=True)
     tags = models.ManyToManyField(Tag, null=True, blank=True)
+    creator = models.ForeignKey(User, null=True, blank=True, on_delete=models.SET_NULL)
 
     def __str__(self):
         return self.name
-
-    def create_event(self):
-        self.save()
 
 
 

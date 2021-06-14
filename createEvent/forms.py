@@ -51,6 +51,8 @@ class EventForm(ModelForm):
             errors.append(forms.ValidationError("Дата проведения не указана"))
         if not cleaned_data['lat']:
             errors.append(forms.ValidationError("Укажите место проведения на карте"))
+        if not cleaned_data['tags']:
+            errors.append(forms.ValidationError("Выберите хотя бы 1 тэг"))
         if errors:
             raise forms.ValidationError(errors)
         return self.cleaned_data
