@@ -12,3 +12,8 @@ class EditProfileForm(forms.ModelForm):
             'first_name',
             'last_name'
         )
+        widgets = {
+            'email': forms.TextInput(attrs={'class': 'changing_form'}),
+            'first_name': forms.TextInput(attrs={'class': 'changing_form'}),
+            'last_name': forms.TextInput(attrs={'class': 'changing_form'}),
+        }

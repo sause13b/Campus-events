@@ -29,6 +29,7 @@
 			<div class="right_window">
 				<main>
 					<div class="main_information_swadow">
+                    {% block left_panel %}
 						<div class="main_information_left_panel">
 							<div class="profile_picture">
 								
@@ -40,6 +41,7 @@
                                 <a href="edit" class="edit_button">Изменить</a>
                             </div>
 						</div>
+                    {% endblock %}
 						<div class="main_information_right_panel">
 							<div class="profile_information_panel_row">
 								<div class="profile_information_panel_column1">
@@ -62,6 +64,7 @@
 										Мобильный телефон:
 									</div>
 								</div>
+                                {% block profile_information %}
 								<div class="profile_information_panel_column2">
                                     {% if user.is_authenticated %}
 									<div class="profile_information_panel_column2_row">
@@ -75,7 +78,6 @@
 									</div>
 									<div class="profile_information_panel_column2_row">
 
-										
 									</div>
 									<div class="profile_information_panel_column2_row">
 										{{ user.email }}
@@ -85,6 +87,7 @@
 									</div>
                                     {% endif %}
 								</div>
+                                {% endblock %}
 							</div>
 						</div>
 					</div>

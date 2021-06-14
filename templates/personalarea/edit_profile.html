@@ -1,17 +1,39 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-    <form method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
-</body>
-</html>
+{% extends 'personalarea/index.html' %}
+{% block profile_information %}
+    <form method="POST" id="submitbutton" class="profile_information_panel_column2">
+    {% csrf_token %}
+    <div class="profile_information_panel_column2">
+            <div class="profile_information_panel_column2_row">
+                {{ user.get_username }}
+            </div>
+            <div class="profile_information_panel_column2_row_change">
+                    {{ form.first_name }}
+            </div>
+            <div class="profile_information_panel_column2_row_change">
+                    {{ form.last_name }}
+            </div>
+            <div class="profile_information_panel_column2_row_change">
+
+            </div>
+            <div class="profile_information_panel_column2_row_change">
+                    {{ form.email }}
+            </div>
+            <div class="profile_information_panel_column2_row_change">
+            </div>
+    </div>
+    </form>>
+{% endblock %}
+
+{% block left_panel %}
+    <div class="main_information_left_panel">
+        <div class="profile_picture">
+
+        </div>
+        <div class="profile_picture_information">
+            Макс размер и прочее
+        </div>
+        <div class="edit_button_area">
+            <button type="submit" form="submitbutton" class="edit_button">Применить</button>
+        </div>
+    </div>
+{% endblock %}
