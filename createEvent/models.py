@@ -20,7 +20,8 @@ class Event(models.Model):
     lng = models.FloatField(null=True, blank=True)
     date = models.DateField(null=True, blank=True)
     tags = models.ManyToManyField(Tag, null=True, blank=True)
-    creator = models.ForeignKey(User, null=True, blank=True, on_delete=models.SET_NULL)
+    creator = models.ForeignKey(User, null=True, blank=True, on_delete=models.SET_NULL, related_name='author_set')
+    members_list = models.ManyToManyField(User, null=True, blank=True, related_name='members_set')
 
     def __str__(self):
         return self.name

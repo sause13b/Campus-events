@@ -37,7 +37,7 @@ class EventForm(ModelForm):
             "lng": TextInput(attrs={
                 "class": 'hidden',
             }),
-            "tags": CheckboxSelectMultiple()
+            # "tags": CheckboxSelectMultiple()
         }
 
     def clean(self):
