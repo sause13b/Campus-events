@@ -17,17 +17,23 @@ def create(request):
     form = EventForm()
     if request.method == 'POST':
         form = EventForm(request.POST)
+        tags = request.POST.getlist('tags')
         if form.is_valid():
             new_form = form.save(commit=False)
             new_form.creator = user
             new_form.save()
+            new_form.tags.set(tags)
+            new_form.save()
             return redirect('map')
 
-    data = {'form': form}
+    data = {
+        'form': form,
+    }
 
     return render(request, 'createevent/create.html', data)
 
 
 def show_form(request):
     return render(request, 'createevent/create_event.html')
+
 

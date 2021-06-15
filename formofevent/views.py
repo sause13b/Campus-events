@@ -14,6 +14,7 @@ def show_form_of_event(request, pk):
 def party(request, pk):
     event = Event.objects.get(id=pk)
     user = request.user
+    print(user.username, event.members_list.all())
     event.members_list.add(user)
     return redirect('map')
 

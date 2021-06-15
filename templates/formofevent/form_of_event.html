@@ -77,7 +77,7 @@
                         <div class="button create_button_shadow">
                             {% if request.user == event.creator %}
                                 <a class="button" style="padding:10px 0px"href="{% url 'edit_party' event.id %}">Редактировать</a>
-                            {% elif request.user not in event.members.all %}
+                            {% elif request.user not in event.members_list.all %}
                                 <a class="button" style="padding:10px 0px"href="{% url 'party' event.id %}">Участвовать</a>
                             {% else %}
                                 <a class="button" style="padding:10px 0px"href="{% url 'leave_party' event.id %}">Не участвовать</a>

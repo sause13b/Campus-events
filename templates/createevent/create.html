@@ -134,7 +134,7 @@
                         </div>
                         <div style="margin-right: auto; margin-left: auto; text-align: center">
                             <p>Тэги:</p>
-                            <div style="max-height: 100px; overflow: scroll; max-width: 300px">
+                            <div style="max-height: 100px; overflow-y: scroll; max-width: 300px">
                                 {{ form.tags }}
                             </div>
                         </div>
@@ -162,6 +162,10 @@
         var form_fields = document.getElementsByTagName('input')
         for(let i = 0; i < form_fields.length; i++) {
             form_fields[i].setAttribute("form", "form-main");
+        }
+        var text_field = document.getElementsByTagName('textarea')
+        for(let i = 0; i < text_field.length; i++) {
+            text_field[i].setAttribute("form", "form-main");
         }
         var date_field = document.getElementsByName('date')
         date_field[0].type = 'date';

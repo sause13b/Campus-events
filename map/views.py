@@ -26,6 +26,5 @@ def render_map(request):
                 i += 1
 
     events = json.dumps(ev)
-    print(events)
     data = {'tags': tags, 'next_events': next_events, 'events': events}
     return render(request, 'map/index.html', data)
