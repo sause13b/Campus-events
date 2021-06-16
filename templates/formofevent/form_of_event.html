@@ -42,7 +42,7 @@
                             <address>Адрес:<span>{{ event.address }}</span></address>
                         </div>
                         <div class="address_container" id="members">
-                            <p>Участники:<span>{{ count }}/{{ event.members }}</span></p>
+                            <p>Участники:<button class="member_number">{{ count }}/{{ event.members }}</button></p>
                         </div>
                         <div class="contacts_container">
                             <p class="contacts">Связь с организатором:</p>
@@ -73,6 +73,16 @@
                             Блок для изображения
                         </div>
                     </div>
+                {% if count > 0 %}
+                     <div>
+                        <div class="members_list" id="mem_list">
+                         <p>Список участников:</p>
+                            {% for member in event.members_list.all %}
+                              <p><span>{{ member }}</span></p>
+                            {% endfor %}
+                        </div>
+                     </div>
+                {% endif %}
                     <div class="main_text_container">
                         <div class="main_text">
                             <p>
@@ -88,7 +98,7 @@
                                 {% if count < event.members %}
                                     <a class="button" style="padding:10px 0px"href="{% url 'party' event.id %}">Участвовать</a>
                                 {% else %}
-                                    <a class="button" style="padding:10px 0px; background-color: grey" href="#">Участвовать</a>
+                                    <a class="button create_button_shadow" style="padding:10px 0px; background-color: grey">Участвовать</a>
                                 {% endif %}
                             {% else %}
                                 <a class="button" style="padding:10px 0px"href="{% url 'leave_party' event.id %}">Не участвовать</a>
@@ -104,16 +114,6 @@
 {#            </footer>#}
         </main>
     </div>
-    {% if count > 0 %}
-        <div>
-            <div class="members_list" id="mem_list">
-                <p>Список участников:</p>
-                {% for member in event.members_list.all %}
-                    <p><span>{{ member }}</span></p>
-                {% endfor %}
-            </div>
-        </div>
-    {% endif %}
 </body>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC_qdFH2u4nfmDKZn5O4kq1wswaAstWolE&callback=my_map" async defer></script>
 </html>

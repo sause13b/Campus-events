@@ -30,10 +30,12 @@ html,body{
 
 .button {
 	cursor: pointer;
+    color: black;
 }
 
 .button:active {
-	box-shadow: 0 0 0 2pt rgb(191,229,244);
+    color: black;
+    box-shadow: 0 0 0 2pt rgb(255, 255, 255);
 }
 
 .button:hover {
@@ -233,6 +235,7 @@ header{
     text-align: center;
     align-self: center;
     width: 40%;
+    font-size: 250%;
     }
 
 .name_value{
@@ -353,7 +356,7 @@ textarea {
 }
 
 .members_list {
-    position: absolute;
+    position: relative;
     left: 0;
     right: 0;
     margin-left: auto;
@@ -372,4 +375,9 @@ textarea {
 
 .show {
     display: block;
+}
+
+.member_number{
+    background: none;
+    color:#2a5885;
 }
