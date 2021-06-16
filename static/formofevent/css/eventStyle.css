@@ -351,3 +351,25 @@ textarea {
     resize: none;
     width: 70%;
 }
+
+.members_list {
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 200px;
+    background-color: white;
+    z-index: 1000;
+    top:50%;
+    transform: translateY(-50%);
+    text-align: center;
+    border: 1px solid lightgrey;
+    box-shadow: 0 0 10px rgba(0,0,0,0.25);
+    padding: 10px 0px;
+    display: none;
+}
+
+.show {
+    display: block;
+}

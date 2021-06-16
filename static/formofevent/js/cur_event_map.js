@@ -80,3 +80,20 @@ function my_map() {
     })
     map.panTo(newLatLng)
 }
+
+window.onload = function () {
+    var members_btn = document.getElementById("members")
+    var members = document.getElementById('mem_list')
+    members_btn.addEventListener("click", function(){
+        members.classList.toggle('show');
+    });
+
+    document.onclick = function(e) {
+        if (!members_btn.contains(e.target) && !members.contains(e.target)) {
+            if (members.classList.contains('show')) {
+                members.classList.remove('show');
+            }
+        }
+    }
+};
+
