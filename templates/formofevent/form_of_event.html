@@ -4,6 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href={% static "formofevent/css/eventStyle.css" %}>
+    <script>
+        var lat = parseFloat('{{ event.lat }}'.replace(",", "."));
+        var lng = parseFloat('{{ event.lng }}'.replace(",", "."));x
+    </script>
     <script src="{% static '/formofevent/js/cur_event_map.js' %}"></script>
     <title>Name of event</title>
 </head>

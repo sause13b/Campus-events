@@ -46,7 +46,6 @@ function my_map() {
         maxZoom: 19,
         mapId: 'b592755503adfa8a',
     }
-
     var map = new google.maps.Map(document.getElementById("map"), options);
     for(let i = 0; i < events.length; i++) {
         let url = "/eventform/"+events[i]["id"]

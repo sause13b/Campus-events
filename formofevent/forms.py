@@ -3,7 +3,7 @@ from django.forms import ModelForm, TextInput, Textarea, CheckboxSelectMultiple
 from django import forms
 
 
-class EventForm(ModelForm):
+class EditForm(ModelForm):
     class Meta:
         model = Event
         fields = ['address', 'members', 'vk', 'email', 'phone', 'name', 'info', 'lat', 'lng', 'date', 'tags']
@@ -41,10 +41,8 @@ class EventForm(ModelForm):
         }
 
     def clean(self):
-        cleaned_data = super(EventForm, self).clean()
+        cleaned_data = super(EditForm, self).clean()
         errors = []
-        if Event.objects.filter(name=cleaned_data['name']).exists():
-            errors.append(forms.ValidationError("Эвент с таким названием уже существует"))
         if not (cleaned_data['phone'] or cleaned_data['email'] or cleaned_data['vk']):
             errors.append(forms.ValidationError("Должен быть указан хотя бы 1 способ связи"))
         if not cleaned_data['date']:

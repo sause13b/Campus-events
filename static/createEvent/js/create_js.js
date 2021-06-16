@@ -74,13 +74,15 @@ function my_map() {
         g_corps.push(marker);
     }
         var marker;
-        if(typeof lat[0].value !== 'undefined') {
+        if(lat[0].value != '') {
             let point = new google.maps.LatLng(lat[0].value, lng[0].value);
             marker = new google.maps.Marker({
                 position: point,
                 map: map,
             })
+            map.panTo(point);
         }
+
 
         map.addListener("click", function(e){
             if (marker == null) {

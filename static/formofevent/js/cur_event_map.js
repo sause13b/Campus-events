@@ -44,6 +44,7 @@ function my_map() {
         maxZoom: 19,
         mapId: 'b592755503adfa8a',
     }
+
     var map = new google.maps.Map(document.getElementById("map"), options);
 
         for(let i = 0; i < corps.length; i++) {
@@ -71,4 +72,11 @@ function my_map() {
         })
         g_corps.push(marker);
     }
+
+    let newLatLng = new google.maps.LatLng(lat, lng);
+    let marker = new google.maps.Marker ({
+        position: newLatLng,
+        map: map,
+    })
+    map.panTo(newLatLng)
 }
