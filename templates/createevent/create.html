@@ -12,24 +12,6 @@
     <body>
         <div class="wrapper">
             <main>
-                <header>
-                    <div class="back_button_container">
-                        <a class="button back_button_shadow" href="{% url 'map' %}">
-                            <div class="back_button" style = "color: white;">Back</div>
-                        </a>
-                    </div>
-
-                    <div class="title_container">
-                        <p class="title">Campus Events</p>
-                    </div>
-
-                    <div class="lk_button_container">
-                        <a class="button lk_button_shadow" href="#">
-                            <div class="lk_button" style = "color: white;">LK</div>
-                        </a>
-                    </div>
-                </header>
-
                 <div class="main_content">
                     <div class="left_side">
                         <div class="text_location">
@@ -143,18 +125,22 @@
                                     <p>{{ error }}</p>
                                 {% endfor %}
                             {% endfor %}
-                        <div class = "create_button_container">
-                            <div class = "button create_button_shadow">
-                                <button class="create_button" type="submit" style = "color: white; border-radius: 15px; background-color: cornflowerblue" form="form-main">Создать мероприятие</button>
+                    {% block nav %}
+                        <div class="bottom_nav">
+                            <div class = "create_button_container">
+                                <div class = "button create_button_shadow">
+                                    <a class="create_button" style = "color: white; border-radius: 15px; background-color: cornflowerblue" href="{% url 'map' %}">Отменить</a>
+                                </div>
+                            </div>
+                            <div class = "create_button_container">
+                                <div class = "button create_button_shadow">
+                                    <button class="create_button" type="submit" style = "color: white; border-radius: 15px; background-color: cornflowerblue" form="form-main">Создать мероприятие</button>
+                                </div>
                             </div>
                         </div>
+                    {% endblock %}
                     </div>
                 </div>
-{#                <footer>#}
-{#                    <div class="footer_container">#}
-{#                        <p> "Campus events" Team Product </p>#}
-{#                    </div>#}
-{#                </footer>#}
             </main>
         </div>
     </body>

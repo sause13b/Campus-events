@@ -33,7 +33,3 @@ def create(request):
     return render(request, 'createevent/create.html', data)
 
 
-def show_form(request):
-    return render(request, 'createevent/create_event.html')
-
-

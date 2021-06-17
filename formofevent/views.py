@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from createEvent.models import Event
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from createEvent.forms import EventForm
 from formofevent.forms import EditForm
 
@@ -18,14 +18,14 @@ def party(request, pk):
     event = Event.objects.get(id=pk)
     user = request.user
     event.members_list.add(user)
-    return redirect('map')
+    return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
 
 
 def leave_party(request, pk):
     event = Event.objects.get(id=pk)
     user = request.user
     event.members_list.remove(user)
-    return redirect('map')
+    return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
 
 
 def edit_party(request, pk):
@@ -36,6 +36,6 @@ def edit_party(request, pk):
         if form.is_valid():
             form.save()
             return redirect('map')
-    data = {'form': form}
+    data = {'form': form, 'pk': pk}
 
-    return render(request, 'createevent/create.html', data)
+    return render(request, 'createevent/edit.html', data)

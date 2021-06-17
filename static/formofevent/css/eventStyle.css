@@ -30,12 +30,10 @@ html,body{
 
 .button {
 	cursor: pointer;
-    color: black;
 }
 
 .button:active {
-    color: black;
-    box-shadow: 0 0 0 2pt rgb(255, 255, 255);
+	box-shadow: 0 0 0 2pt rgb(191,229,244);
 }
 
 .button:hover {
@@ -135,10 +133,9 @@ header{
 .main_content{
     display: flex;
     flex-direction: row;
-    height: calc(100vh - 55px);
+    height: 99.9%;
     width: 100%;
     border-top: solid 1px lightgrey;
-    /*border-bottom: solid 1px gray;*/
     }
 
 .left_side{
@@ -235,7 +232,6 @@ header{
     text-align: center;
     align-self: center;
     width: 40%;
-    font-size: 250%;
     }
 
 .name_value{
@@ -295,15 +291,11 @@ footer{
     }
 
 .create_button_container{
-    position: absolute;
     bottom: 15px;
-    right: 15px;
     justify-content: space-evenly;
     flex-direction: row;
     align-items: center;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    }
+}
 
 .create_button_shadow{
     display: flex;
@@ -356,7 +348,7 @@ textarea {
 }
 
 .members_list {
-    position: relative;
+    position: absolute;
     left: 0;
     right: 0;
     margin-left: auto;
@@ -377,7 +369,11 @@ textarea {
     display: block;
 }
 
-.member_number{
-    background: none;
-    color:#2a5885;
+.bottom_nav {
+    display: flex;
+    position: absolute;
+    width: 59%;
+    bottom: 20px;
+    justify-content: space-between;
+    padding: 0px 30px;
 }

@@ -1,0 +1,16 @@
+{% extends 'createevent/create.html' %}
+
+{% block nav %}
+    <div class="bottom_nav">
+        <div class = "create_button_container">
+            <div class = "button create_button_shadow">
+                <a class="create_button" style = "color: white; border-radius: 15px; background-color: cornflowerblue" href="{% url 'show_form_of_event' pk %}">Отменить</a>
+            </div>
+        </div>
+        <div class = "create_button_container">
+            <div class = "button create_button_shadow">
+                <button class="create_button" type="submit" style = "color: white; border-radius: 15px; background-color: cornflowerblue; margin: 10px 0px" form="form-main">Сохранить</button>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -24,7 +24,7 @@ urlpatterns = [
     path('personalarea/', include('personalarea.urls')),
     path('eventform/', include('formofevent.urls')),
     path('createevent/', include('createEvent.urls')),
-    path('map/', include('map.urls')),
+    path('', include('map.urls')),
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
