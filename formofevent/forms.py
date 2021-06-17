@@ -43,6 +43,12 @@ class EditForm(ModelForm):
     def clean(self):
         cleaned_data = super(EditForm, self).clean()
         errors = []
+        name = cleaned_data['name']
+        names = Event.objects.filter(name=name)
+        if self.instance.pk is not None:
+            names = names.exclude(pk=self.instance.pk)
+        if names.exists():
+            errors.append(forms.ValidationError("Эвент с таким названием уже существует"))
         if not (cleaned_data['phone'] or cleaned_data['email'] or cleaned_data['vk']):
             errors.append(forms.ValidationError("Должен быть указан хотя бы 1 способ связи"))
         if not cleaned_data['date']:

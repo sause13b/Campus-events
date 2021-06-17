@@ -13,4 +13,13 @@
             </div>
         </div>
     </div>
+
+    <script>
+        window.onload = function (){
+            var date = '{{ date | safe}}';
+            var date_obj = document.getElementsByName('date');
+            date_obj[0].value = date;
+        }
+    </script>
 {% endblock %}
+

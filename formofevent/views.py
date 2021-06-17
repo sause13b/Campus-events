@@ -31,11 +31,12 @@ def leave_party(request, pk):
 def edit_party(request, pk):
     event = Event.objects.get(id=pk)
     form = EditForm(instance=event)
+    date = event.date
     if request.method == 'POST':
         form = EditForm(request.POST, instance=event)
         if form.is_valid():
             form.save()
             return redirect('map')
-    data = {'form': form, 'pk': pk}
+    data = {'form': form, 'pk': pk, 'date': date}
 
     return render(request, 'createevent/edit.html', data)
