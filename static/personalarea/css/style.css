@@ -284,6 +284,17 @@ main
 	display: flex;
 }
 
+.events_list{
+	font-size: 200%;
+	list-style-type: none;
+	padding: 2% ;
+}
+
+.event_name:visited {
+	color: black;
+}
+
+
 .profile_information_panel_column1
 {
 	display: flex;

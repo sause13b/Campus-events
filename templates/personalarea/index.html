@@ -11,18 +11,18 @@
 			<div class="left_window">
 				<div class="back_to_main_page_bottom_area">
 					<div class="back_to_main_page_bottom_swadow">
-						<a href="#" class="back_to_main_bottom">Вернуться на главную</a>
+						<a href="{% url 'map' %}" class="back_to_main_bottom">Вернуться на главную</a>
 					</div>
 				</div>
 				<nav class="personal_area_navigation">
 					<div class="navigation_panel">
-						<a href="#" class="navigation_bottom">Профиль</a>
+						<a href="{% url 'show_personalarea' %}" class="navigation_bottom">Профиль</a>
 					</div>
 					<div class="navigation_panel">
-						<a href="#" class="navigation_bottom">Запланированные ивенты</a>
+						<a href="{% url 'planed_events' %}" class="navigation_bottom">Запланированные ивенты</a>
 					</div>
 					<div class="navigation_panel">
-						<a href="#" class="navigation_bottom">Посещенные ивенты</a>
+						<a href="{% url 'ended_events' %}" class="navigation_bottom">Посещенные ивенты</a>
 					</div>
 				</nav>
 			</div>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="rus">
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href={% static "personalarea/css/style.css" %}>
+		<title>Запланированные ивенты</title>
+	</head>
+	<body>
+		<div class="wrapper">
+			<div class="left_window">
+				<div class="back_to_main_page_bottom_area">
+					<div class="back_to_main_page_bottom_swadow">
+						<a href="{% url 'map' %}" class="back_to_main_bottom">Вернуться на главную</a>
+					</div>
+				</div>
+				<nav class="personal_area_navigation">
+					<div class="navigation_panel">
+						<a href="{% url 'show_personalarea' %}" class="navigation_bottom">Профиль</a>
+					</div>
+					<div class="navigation_panel">
+						<a href="{% url 'planed_events' %}" class="navigation_bottom">Запланированные ивенты</a>
+					</div>
+					<div class="navigation_panel">
+						<a href="{% url 'ended_events' %}" class="navigation_bottom">Посещенные ивенты</a>
+					</div>
+				</nav>
+			</div>
+			<div class="right_window">
+				<main>
+                    {% if user.is_authenticated %}
+                        {% for event in user_events %}
+                       <li class="events_list">
+                           <a class="event_name" href="{% url 'show_form_of_event' event.id %}">{{ event.name }}</a>
+                       </li>
+                        {% endfor %}
+                    {% endif %}
+				</main>
+			</div>
+		</div>
+	</body>
+</html>

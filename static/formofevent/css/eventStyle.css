@@ -254,6 +254,7 @@ header{
     margin: auto;
     width: 80%;
     height: 100%;
+    word-wrap: break-word;
     }
 
 footer{

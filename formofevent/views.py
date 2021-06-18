@@ -14,7 +14,6 @@ def show_form_of_event(request, pk):
         except ValueError:
             pass
     context = {'event': event, 'count': members_count}
-
     return render(request, 'formofevent/form_of_event.html', context)
 
 

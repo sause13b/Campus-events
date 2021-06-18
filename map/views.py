@@ -6,6 +6,7 @@ import datetime
 import json
 
 
+
 @login_required(login_url='login')
 def render_map(request):
     today = datetime.datetime.today()
