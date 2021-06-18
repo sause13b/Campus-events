@@ -14,9 +14,7 @@ def render_map(request):
     tags = Tag.objects.all()
     events = Event.objects.all().filter(date__gte=today).order_by('date')
     events = events.values()
-    # next_events = events.order_by('date').values()
     events = json.dumps(list(events), cls=DjangoJSONEncoder)
-    # next_events = json.dumps(list(next_events), cls=DjangoJSONEncoder)
     ev = json.loads(events)
     for i in range(len(ev)):
         ev[i]["tags"] = []

@@ -2,6 +2,8 @@ var map;
 var g_corps = [];
 var g_events = [];
 var infowindow = [];
+var next_events = [];
+var tags_to_hide = [];
 
 function my_map() {
     var corps = [
@@ -64,7 +66,6 @@ function my_map() {
         });
         g_events.push(marker);
         let content = marker.title + '<br>' + '<a href="'+url+'">'+'Ссылка'+'</a>';
-            console.log(content)
         infowindow[i] = new google.maps.InfoWindow({
             content: content,
         });
@@ -172,49 +173,104 @@ window.onload = function() {
         }
     })
 
-    var showed = 0;
-    var min_ = Math.min(events.length, 10);
+    var min_ = Math.min(events.length, 5);
     for(let i = 0; i < min_; i++) {
         ev[i].classList.remove('show_none');
-        showed++;
+        next_events.push(ev[i]);
     }
+    var showed = min_;
 
     var tags = document.getElementsByClassName("tag");
     for(let i = 0; i < tags.length; i++) {
         tags[i].addEventListener("click", function(){
             this.classList.toggle('clicked_tag');
             let tag = tags[i].textContent;
-            var visibility = true
+            var visibility = true;
             if (this.classList.contains('clicked_tag') == true) {
-                visibility = false
+                visibility = false;
+                tags_to_hide.push(tag);
+                for(let j = 0; j < ev.length; j++) {
+                    if (events[j]['tags'].includes(tag) && !ev[j].classList.contains('show_none')) {
+                        ev[j].classList.add('show_none');
+                        showed--;
+                    }
+                }
+                if (showed < min_) {
+                    for(let j = 0; j < ev.length; j++) {
+                        var show = 1;
+                        for(let k = 0; k < tags_to_hide.length; k++) {
+                            let tag_ = tags_to_hide[k];
+                            if (events[j]['tags'].includes(tag_)) {
+                                show = 0;
+                                break;
+                            }
+                        }
+                        if (show == 1 && ev[j].classList.contains('show_none')) {
+                            ev[j].classList.remove('show_none');
+                            showed++;
+                            if (showed == min_) {
+                                break;
+                            }
+                        }
+                    }
+                }
             }
-            for(let i = 0; i < g_events.length; i++) {
-                if (g_events[i].category.includes(tag)) {
-                    g_events[i].setVisible(visibility);
-                    if (g_events[i].visible != true) {
-                        infowindow[i].close(map, g_events[i]);
+            else {
+                let indx = tags_to_hide.indexOf(tag);
+                tags_to_hide.splice(indx,1);
+
+                for(let j = 0; j < ev.length; j++) {
+                    var show = 1;
+                    for(let k = 0; k < tags_to_hide.length; k++) {
+                        let tag_ = tags_to_hide[k];
+                        if (events[j]['tags'].includes(tag_)) {
+                            show = 0;
+                            break;
+                        }
+                    }
+                    if (events[j]['tags'].includes(tag) && show == 1) {
+                        ev[j].classList.remove('show_none');
+                        showed++;
+                        if (showed == min_) {
+                            break;
+                        }
                     }
                 }
             }
 
-            // for(let i = 0; i < ev.length; i++) {
-            //     alert(events[i]['tags'])
-            //     if (ev[i].classList.contains('show_none') && events[i]['tags'].includes(tag) && showed < min_) {
-            //         if (visibility) {
-            //             ev[i].classList.remove('show_none');
-            //             showed++;
-            //         }
-            //     } else if (events[i]['tags'].includes(tag) && showed > 0) {
-            //
-            //         if (visibility == false) {
-            //             ev[i].classList.add('show_none');
-            //             showed--;
-            //         }
-            //     }
-            //     if (showed == 0 || showed == min_) {
-            //         break;
-            //     }
-            // }
+            if (showed > min_) {
+                for(let j = ev.length-1; j >= 0; j--) {
+                    if (!ev[j].classList.contains('show_none')) {
+                        ev[j].classList.add('show_none');
+                        showed--;
+                        if (showed == min_) {
+                            break;
+                        }
+                    }
+                }
+            }
+
+            for(let j = 0; j < g_events.length; j++) {
+                if (visibility == false) {
+                    if (g_events[j].category.includes(tag)) {
+                        g_events[j].setVisible(visibility);
+                        infowindow[j].close(map, g_events[j]);
+                    }
+                }
+                else {
+                    var show = 1;
+                    for(let k = 0; k < tags_to_hide.length; k++) {
+                        let tag_ = tags_to_hide[k];
+                        if (g_events[j].category.includes(tag_)) {
+                            show = 0;
+                            break;
+                        }
+                    }
+                    if (show == 1) {
+                        g_events[j].setVisible(visibility);
+                    }
+                }
+            }
         })
     }
 
