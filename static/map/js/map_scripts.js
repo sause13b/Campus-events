@@ -99,30 +99,6 @@ function my_map() {
         })
         g_corps.push(marker);
     }
-
-    map.addListener("zoom_changed", function(){
-        if(map.getZoom() == 15) {
-            for (let i = 0; i < corps.length; i++) {
-                g_corps[i].setVisible(false);
-            }
-        }
-        else if(map.getZoom() > 15) {
-            for(let j = 0; j < corps_legend.length-1; j++) {
-                let name = corps_legend[j].textContent.slice(3);
-                let img = corps_legend[j].querySelector('img');
-                if (name == 'Жилые корпуса' && img.classList.contains('gray_filter') == false) {
-                    for (let i = 0; i < 14; i++) {
-                        g_corps[i].setVisible(true);
-                    }
-                }
-                if (name == 'Учебные корпуса' && img.classList.contains('gray_filter') == false) {
-                    for (let i = 14; i < g_corps.length; i++) {
-                        g_corps[i].setVisible(true);
-                    }
-                }
-            }
-        }
-    })
 }
 
 window.onload = function() {
@@ -273,6 +249,30 @@ window.onload = function() {
             }
         })
     }
+
+    map.addListener("zoom_changed", function(){
+        if(map.getZoom() == 15) {
+            for (let i = 0; i < g_corps.length; i++) {
+                g_corps[i].setVisible(false);
+            }
+        }
+        else if(map.getZoom() > 15) {
+            for(let j = 0; j < corps_legend.length-1; j++) {
+                let name = corps_legend[j].textContent.slice(3);
+                let img = corps_legend[j].querySelector('img');
+                if (name == 'Жилые корпуса' && img.classList.contains('gray_filter') == false) {
+                    for (let i = 0; i < 14; i++) {
+                        g_corps[i].setVisible(true);
+                    }
+                }
+                if (name == 'Учебные корпуса' && img.classList.contains('gray_filter') == false) {
+                    for (let i = 14; i < g_corps.length; i++) {
+                        g_corps[i].setVisible(true);
+                    }
+                }
+            }
+        }
+    })
 
     var corps_legend = document.getElementsByClassName("legend_unit");
     for(let i = 0; i < corps_legend.length; i++) {
