@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserChangeForm
 from .forms import EditProfileForm
+from datetime import date
+
 
 def edit_profile(request):
     if request.method == 'POST':
@@ -15,6 +17,20 @@ def edit_profile(request):
 
 def show_personalarea(request):
     return render(request, 'personalarea/index.html')
+
+def planed_events(request):
+    user = request.user
+    today = date.today()
+    u_events = user.members_set.all().filter(date__gte=today).order_by('date')
+    context = {'user_events': u_events}
+    return render(request, 'personalarea/planed_events.html', context)
+
+def ended_events(request):
+    user = request.user
+    today = date.today()
+    u_events = user.members_set.all().filter(date__lte=today).order_by('date')
+    context = {'user_events': u_events}
+    return render(request, 'personalarea/ended_events.html', context)
 
 
 
