@@ -99,6 +99,85 @@ function my_map() {
         g_corps.push(marker);
     }
 
+    map.addListener("zoom_changed", function(){
+        if(map.getZoom() == 15) {
+            for (let i = 0; i < corps.length; i++) {
+                g_corps[i].setVisible(false);
+            }
+        }
+        else if(map.getZoom() > 15) {
+            for(let j = 0; j < corps_legend.length-1; j++) {
+                let name = corps_legend[j].textContent.slice(3);
+                let img = corps_legend[j].querySelector('img');
+                if (name == 'Жилые корпуса' && img.classList.contains('gray_filter') == false) {
+                    for (let i = 0; i < 14; i++) {
+                        g_corps[i].setVisible(true);
+                    }
+                }
+                if (name == 'Учебные корпуса' && img.classList.contains('gray_filter') == false) {
+                    for (let i = 14; i < g_corps.length; i++) {
+                        g_corps[i].setVisible(true);
+                    }
+                }
+            }
+        }
+    })
+}
+
+window.onload = function() {
+    let ul = document.getElementById('events_list')
+    for (let i = 0; i < events.length; i++) {
+        let name = events[i]['name'];
+        let date = events[i]['date'];
+        let name_span = document.createElement('span');
+        let date_span = document.createElement('span');
+        name_span.appendChild(document.createTextNode(name));
+        date_span.appendChild(document.createTextNode(date));
+        let li = document.createElement('li');
+        li.appendChild(name_span);
+        li.appendChild(date_span);
+        li.classList.add('event');
+        li.classList.add('show_none');
+        ul.appendChild(li);
+    }
+
+
+    let ev = document.getElementsByClassName('event');
+    for(let i = 0; i < ev.length; i++) {
+        ev[i].addEventListener("click", function(){
+            let name = this.firstChild.textContent;
+            this.classList.add('clicked_event');
+            for(let sibling of this.parentNode.children) {
+                if (sibling != this) {
+                    sibling.classList.remove('clicked_event');
+                }
+            }
+            for(let i = 0; i < g_events.length; i++) {
+                infowindow[i].close();
+                if (g_events[i].title == name) {
+                    g_events[i].setVisible(true);
+                    map.panTo(g_events[i].position);
+                    infowindow[i].open(map, g_events[i]);
+                }
+            }
+        })
+    }
+
+    map.addListener("drag", function(){
+        for(let i = 0; i < ev.length; i++) {
+            ev[i].classList.remove('clicked_event');
+        }
+        for(let i = 0; i < g_events.length; i++) {
+            infowindow[i].close();
+        }
+    })
+
+    var showed = 0;
+    var min_ = Math.min(events.length, 10);
+    for(let i = 0; i < min_; i++) {
+        ev[i].classList.remove('show_none');
+        showed++;
+    }
 
     var tags = document.getElementsByClassName("tag");
     for(let i = 0; i < tags.length; i++) {
@@ -117,17 +196,26 @@ function my_map() {
                     }
                 }
             }
+            // for(let i = 0; i < ev.length; i++) {
+            //     alert(events[i]['tags'])
+            //     if (ev[i].classList.contains('show_none') && events[i]['tags'].includes(tag) && showed < min_) {
+            //         if (visibility) {
+            //             ev[i].classList.remove('show_none');
+            //             showed++;
+            //         }
+            //     } else if (events[i]['tags'].includes(tag) && showed > 0) {
+            //
+            //         if (visibility == false) {
+            //             ev[i].classList.add('show_none');
+            //             showed--;
+            //         }
+            //     }
+            //     if (showed == 0 || showed == min_) {
+            //         break;
+            //     }
+            // }
         })
     }
-
-    map.addListener("drag", function(){
-        for(let i = 0; i < next_events.length; i++) {
-            next_events[i].classList.remove('clicked_event');
-        }
-        for(let i = 0; i < g_events.length; i++) {
-            infowindow[i].close();
-        }
-    })
 
     var corps_legend = document.getElementsByClassName("legend_unit");
     for(let i = 0; i < corps_legend.length; i++) {
@@ -172,67 +260,6 @@ function my_map() {
                     else {
                         g_events[i].setVisible(false);
                     }
-                }
-            }
-        })
-    }
-
-    map.addListener("zoom_changed", function(){
-        if(map.getZoom() == 15) {
-            for (let i = 0; i < corps.length; i++) {
-                g_corps[i].setVisible(false);
-            }
-        }
-        else if(map.getZoom() > 15) {
-            for(let j = 0; j < corps_legend.length-1; j++) {
-                let name = corps_legend[j].textContent.slice(3);
-                let img = corps_legend[j].querySelector('img');
-                if (name == 'Жилые корпуса' && img.classList.contains('gray_filter') == false) {
-                    for (let i = 0; i < 14; i++) {
-                        g_corps[i].setVisible(true);
-                    }
-                }
-                if (name == 'Учебные корпуса' && img.classList.contains('gray_filter') == false) {
-                    for (let i = 14; i < g_corps.length; i++) {
-                        g_corps[i].setVisible(true);
-                    }
-                }
-            }
-        }
-    })
-}
-
-window.onload = function() {
-    let ul = document.getElementById('events_list')
-    for (let i = 0; i < next_events.length; i++) {
-        let name = next_events[i]['name'];
-        let date = next_events[i]['date'];
-        let name_span = document.createElement('span');
-        let date_span = document.createElement('span');
-        name_span.appendChild(document.createTextNode(name));
-        date_span.appendChild(document.createTextNode(date));
-        let li = document.createElement('li');
-        li.appendChild(name_span);
-        li.appendChild(date_span);
-        li.classList.add('event');
-        ul.appendChild(li);
-    }
-    let ev = document.getElementsByClassName('event');
-    for(let i = 0; i < ev.length; i++) {
-        ev[i].addEventListener("click", function(){
-            let name = this.firstChild.textContent;
-            this.classList.add('clicked_event');
-            for(let sibling of this.parentNode.children) {
-                if (sibling != this) {
-                    sibling.classList.remove('clicked_event');
-                }
-            }
-            for(let i = 0; i < g_events.length; i++) {
-                infowindow[i].close();
-                if (g_events[i].title == name) {
-                    g_events[i].setVisible(true);
-                    map.panTo(g_events[i].position);
-                    infowindow[i].open(map, g_events[i]);
                 }
             }
         })

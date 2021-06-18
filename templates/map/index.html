@@ -5,7 +5,7 @@
 <link rel="stylesheet" href="{% static '/map/css/indexcss.css' %}">
 <script type="text/javascript">
     var events =  JSON.parse('{{ events | safe }}');
-    var next_events = JSON.parse('{{ next_events | safe }}');
+    {#var next_events = JSON.parse('{{ next_events | safe }}');#}
 </script>
 <script src="{% static '/map/js/map_scripts.js' %}"></script>
 <head>

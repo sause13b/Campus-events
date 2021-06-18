@@ -144,3 +144,7 @@ a {
 .hidden_marker {
     color: darkgrey;
 }
+
+.show_none {
+    display: none;
+}
