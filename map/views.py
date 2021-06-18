@@ -3,13 +3,18 @@ from django.core.serializers import serialize
 from django.core.serializers.json import DjangoJSONEncoder
 from createEvent.models import *
 from django.contrib.auth.decorators import login_required
+from django.db.models import Q
+import datetime
 import json
 
 
 @login_required(login_url='login')
 def render_map(request):
+    today = datetime.datetime.today()
+    today = datetime.date(today.year, today.month, today.day)
     tags = Tag.objects.all()
-    events = Event.objects.all().values()
+    events = Event.objects.all().filter(date__gte=today)
+    events = events.values()
     next_events = events[:10]
     events = json.dumps(list(events), cls=DjangoJSONEncoder)
     ev = json.loads(events)
