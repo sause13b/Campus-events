@@ -4,7 +4,6 @@ from .forms import EditProfileForm
 
 def edit_profile(request):
     if request.method == 'POST':
-        print(request.method == 'POST')
         form = EditProfileForm(request.POST, instance=request.user)
         if form.is_valid():
             form.save()

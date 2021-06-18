@@ -133,10 +133,9 @@ header{
 .main_content{
     display: flex;
     flex-direction: row;
-    height: calc(100vh - 55px);
+    height: 99.9%;
     width: 100%;
     border-top: solid 1px lightgrey;
-    /*border-bottom: solid 1px gray;*/
     }
 
 .left_side{
@@ -292,15 +291,11 @@ footer{
     }
 
 .create_button_container{
-    position: absolute;
     bottom: 15px;
-    right: 15px;
     justify-content: space-evenly;
     flex-direction: row;
     align-items: center;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    }
+}
 
 .create_button_shadow{
     display: flex;
@@ -350,4 +345,35 @@ textarea {
     border-radius: 5px;
     resize: none;
     width: 70%;
+}
+
+.members_list {
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 200px;
+    background-color: white;
+    z-index: 1000;
+    top:50%;
+    transform: translateY(-50%);
+    text-align: center;
+    border: 1px solid lightgrey;
+    box-shadow: 0 0 10px rgba(0,0,0,0.25);
+    padding: 10px 0px;
+    display: none;
+}
+
+.show {
+    display: block;
+}
+
+.bottom_nav {
+    display: flex;
+    position: absolute;
+    width: 59%;
+    bottom: 20px;
+    justify-content: space-between;
+    padding: 0px 30px;
 }

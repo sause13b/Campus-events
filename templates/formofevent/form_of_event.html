@@ -4,27 +4,16 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href={% static "formofevent/css/eventStyle.css" %}>
+    <script>
+        var lat = parseFloat('{{ event.lat }}'.replace(",", "."));
+        var lng = parseFloat('{{ event.lng }}'.replace(",", "."));x
+    </script>
     <script src="{% static '/formofevent/js/cur_event_map.js' %}"></script>
     <title>Name of event</title>
 </head>
 <body>
     <div class="wrapper">
         <main>
-            <header>
-                    <div class="back_button_container">
-                        <a class="button back_button_shadow" href="{% url 'map' %}">
-                            <div class="back_button" style = "color: white;">Back</div>
-                        </a>
-                    </div>
-                <div class="title_container">
-                    <p class="title">Campus Events</p>
-                </div>
-                    <div class="lk_button_container">
-                        <a class="button lk_button_shadow" href="#">
-                            <div class="lk_button" style = "color: white;">LK</div>
-                        </a>
-                    </div>
-            </header>
             <div class="main_content">
                 <div class="left_side">
                     <div class="text_location">
@@ -36,6 +25,9 @@
                     <div class="left_text_container">
                         <div class="address_container">
                             <address>Адрес:<span>{{ event.address }}</span></address>
+                        </div>
+                        <div class="address_container" id="members">
+                            <p>Участники:<span>{{ count }}/{{ event.members }}</span></p>
                         </div>
                         <div class="contacts_container">
                             <p class="contacts">Связь с организатором:</p>
@@ -59,7 +51,7 @@
                 </div>
                 <div class="right_side">
                     <div class="name_container">
-                        <p>{{ event.name }}</p>
+                        <p style="font-size: 24px">{{ event.name }}</p>
                     </div>
                     <div class="right_img_container">
                         <div class="right_img">
@@ -73,26 +65,42 @@
                             </p>
                         </div>
                     </div>
-                    <div class="create_button_container">
-                        <div class="button create_button_shadow">
-                            {% if request.user == event.creator %}
-                                <a class="button" style="padding:10px 0px"href="{% url 'edit_party' event.id %}">Редактировать</a>
-                            {% elif request.user not in event.members_list.all %}
-                                <a class="button" style="padding:10px 0px"href="{% url 'party' event.id %}">Участвовать</a>
-                            {% else %}
-                                <a class="button" style="padding:10px 0px"href="{% url 'leave_party' event.id %}">Не участвовать</a>
-                            {% endif %}
+                    <div class="bottom_nav">
+                        <div class = "create_button_container">
+                            <div class = "button create_button_shadow">
+                                <a class="create_button" style = "color: white; border-radius: 15px; background-color: cornflowerblue;" href="{% url 'map' %}">Назад на карту</a>
+                            </div>
+                        </div>
+                        <div class="create_button_container">
+                            <div class="button create_button_shadow">
+                                {% if request.user == event.creator %}
+                                    <a class="button" style="color: white; border-radius: 15px; background-color: cornflowerblue; padding:10px 0px"href="{% url 'edit_party' event.id %}">Редактировать</a>
+                                {% elif request.user not in event.members_list.all %}
+                                    {% if count < event.members %}
+                                        <a class="button" style="color: white; border-radius: 15px; background-color: cornflowerblue;padding:10px 0px"href="{% url 'party' event.id %}">Участвовать</a>
+                                    {% else %}
+                                        <a class="button" style="color: white; border-radius: 15px; background-color: cornflowerblue;padding:10px 0px; background-color: grey" href="#">Участвовать</a>
+                                    {% endif %}
+                                {% else %}
+                                    <a class="button" style="color: white; border-radius: 15px; background-color: cornflowerblue;padding:10px 0px"href="{% url 'leave_party' event.id %}">Не участвовать</a>
+                                {% endif %}
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-{#            <footer>#}
-{#                <div class="footer_container">#}
-{#                    <p> "Campus events" Team Product </p>#}
-{#                </div>#}
-{#            </footer>#}
         </main>
     </div>
+    {% if count > 0 %}
+        <div>
+            <div class="members_list" id="mem_list">
+                <p>Список участников:</p>
+                {% for member in event.members_list.all %}
+                    <p><span>{{ member }}</span></p>
+                {% endfor %}
+            </div>
+        </div>
+    {% endif %}
 </body>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC_qdFH2u4nfmDKZn5O4kq1wswaAstWolE&callback=my_map" async defer></script>
 </html>
