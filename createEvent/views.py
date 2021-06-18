@@ -16,7 +16,7 @@ def create(request):
     user = request.user
     form = EventForm()
     if request.method == 'POST':
-        form = EventForm(request.POST)
+        form = EventForm(request.POST, request.FILES)
         tags = request.POST.getlist('tags')
         if form.is_valid():
             new_form = form.save(commit=False)

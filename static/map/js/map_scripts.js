@@ -128,7 +128,7 @@ window.onload = function() {
     let ul = document.getElementById('events_list')
     for (let i = 0; i < events.length; i++) {
         let name = events[i]['name'];
-        let date = events[i]['date'];
+        let date = events[i]['tags'];
         let name_span = document.createElement('span');
         let date_span = document.createElement('span');
         name_span.appendChild(document.createTextNode(name));
@@ -196,6 +196,7 @@ window.onload = function() {
                     }
                 }
             }
+
             // for(let i = 0; i < ev.length; i++) {
             //     alert(events[i]['tags'])
             //     if (ev[i].classList.contains('show_none') && events[i]['tags'].includes(tag) && showed < min_) {

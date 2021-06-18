@@ -37,7 +37,7 @@ def edit_party(request, pk):
     form = EditForm(instance=event)
     date = event.date
     if request.method == 'POST':
-        form = EditForm(request.POST, instance=event)
+        form = EditForm(request.POST, request.FILES, instance=event)
         if form.is_valid():
             form.save()
             return redirect('map')
