@@ -216,6 +216,8 @@ header{
     }
 
 .right_img{
+    display: flex;
+    flex-direction: column;
     margin: auto;
     height: 80%;
     width: 90%;
@@ -225,8 +227,7 @@ header{
 
 .right_img_button{
     width: 40%;
-    height: 90%;
-    margin-left: 30%;
+    margin: auto;
     }
 
 .name_container{

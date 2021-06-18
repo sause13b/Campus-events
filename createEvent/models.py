@@ -16,6 +16,7 @@ class Event(models.Model):
     vk = models.CharField(max_length=200, null=True, blank=True)
     email = models.EmailField(null=True, blank=True)
     phone = models.CharField(max_length=11, null=True, blank=True)
+    image = models.ImageField(null=True, blank=True, upload_to="images/")
     info = models.TextField(null=True, blank=True)
     lat = models.FloatField(null=True, blank=True)
     lng = models.FloatField(null=True, blank=True)

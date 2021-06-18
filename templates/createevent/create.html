@@ -47,7 +47,7 @@
                                 </div>
 
                                 <div class = "address_value">
-                                    <form method="POST" id="form-main">
+                                    <form method="POST" id="form-main" enctype="multipart/form-data">
                                         {% csrf_token %}
                                         {{ form.address }}
                                         {{ form.lat }}
@@ -118,8 +118,9 @@
                                 <h2 align = "center">
                                     <b>Добавьте фотографию, чтобы стало понятнее:</b>
                                 </h2>
-
-                                <input class = "right_img_button" type = "image" src = "https://img.icons8.com/ultraviolet/452/add--v2.png" alt = "add_picture">
+                                <div class="right_img_button">
+                                    {{ form.image }}
+                                </div>
                             </div>
                         </div>
 

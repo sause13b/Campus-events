@@ -6,7 +6,7 @@ from django import forms
 class EventForm(ModelForm):
     class Meta:
         model = Event
-        fields = ['address', 'members', 'vk', 'email', 'phone', 'name', 'info', 'lat', 'lng', 'date', 'tags']
+        fields = ['address', 'members', 'vk', 'email', 'phone', 'name', 'image', 'info', 'lat', 'lng', 'date', 'tags']
 
         widgets = {
             "name": TextInput(attrs={
