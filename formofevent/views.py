@@ -8,7 +8,11 @@ from formofevent.forms import EditForm
 def show_form_of_event(request, pk):
     event = Event.objects.get(id=pk)
     members_count = event.members_list.count()
-    event.members = int(event.members)
+    if event.members:
+        try:
+            event.members = int(event.members)
+        except ValueError:
+            pass
     context = {'event': event, 'count': members_count}
 
     return render(request, 'formofevent/form_of_event.html', context)

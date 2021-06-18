@@ -1,3 +1,8 @@
+var map;
+var g_corps = [];
+var g_events = [];
+var infowindow = [];
+
 function my_map() {
     var corps = [
         ['Корпус 1', 43.02778587838957, 131.88849080275082],
@@ -24,9 +29,6 @@ function my_map() {
         ['Корпус E', 43.024480, 131.895586],
         ['Корпус F', 43.024417, 131.897502],
     ];
-    var g_corps = [];
-    var g_events = [];
-    var infowindow = [];
 
     const campus_bounds = {
         north: 43.041900,
@@ -46,7 +48,7 @@ function my_map() {
         maxZoom: 19,
         mapId: 'b592755503adfa8a',
     }
-    var map = new google.maps.Map(document.getElementById("map"), options);
+    map = new google.maps.Map(document.getElementById("map"), options);
     for(let i = 0; i < events.length; i++) {
         let url = "/eventform/"+events[i]["id"]
         let newLatLng = new google.maps.LatLng(events[i]['lat'], events[i]['lng']);
@@ -113,28 +115,6 @@ function my_map() {
                     if (g_events[i].visible != true) {
                         infowindow[i].close(map, g_events[i]);
                     }
-                }
-            }
-        })
-    }
-
-    var next_events = document.getElementsByClassName("event");
-    for(let i = 0; i < next_events.length; i++) {
-        next_events[i].addEventListener("click", function(){
-            let name = this.firstChild.textContent;
-            this.classList.add('clicked_event');
-            for(let sibling of this.parentNode.children) {
-                if (sibling != this) {
-                    sibling.classList.remove('clicked_event');
-                }
-            }
-            for(let i = 0; i < g_events.length; i++) {
-                infowindow[i].close();
-                if (g_events[i].title == name) {
-                    g_events[i].setVisible(true);
-                    //map.setZoom(17);
-                    map.panTo(g_events[i].position);
-                    infowindow[i].open(map, g_events[i]);
                 }
             }
         })
@@ -220,4 +200,41 @@ function my_map() {
             }
         }
     })
+}
+
+window.onload = function() {
+    let ul = document.getElementById('events_list')
+    for (let i = 0; i < next_events.length; i++) {
+        let name = next_events[i]['name'];
+        let date = next_events[i]['date'];
+        let name_span = document.createElement('span');
+        let date_span = document.createElement('span');
+        name_span.appendChild(document.createTextNode(name));
+        date_span.appendChild(document.createTextNode(date));
+        let li = document.createElement('li');
+        li.appendChild(name_span);
+        li.appendChild(date_span);
+        li.classList.add('event');
+        ul.appendChild(li);
+    }
+    let ev = document.getElementsByClassName('event');
+    for(let i = 0; i < ev.length; i++) {
+        ev[i].addEventListener("click", function(){
+            let name = this.firstChild.textContent;
+            this.classList.add('clicked_event');
+            for(let sibling of this.parentNode.children) {
+                if (sibling != this) {
+                    sibling.classList.remove('clicked_event');
+                }
+            }
+            for(let i = 0; i < g_events.length; i++) {
+                infowindow[i].close();
+                if (g_events[i].title == name) {
+                    g_events[i].setVisible(true);
+                    map.panTo(g_events[i].position);
+                    infowindow[i].open(map, g_events[i]);
+                }
+            }
+        })
+    }
 }

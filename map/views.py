@@ -1,9 +1,7 @@
 from django.shortcuts import render
-from django.core.serializers import serialize
 from django.core.serializers.json import DjangoJSONEncoder
 from createEvent.models import *
 from django.contrib.auth.decorators import login_required
-from django.db.models import Q
 import datetime
 import json
 
@@ -15,8 +13,10 @@ def render_map(request):
     tags = Tag.objects.all()
     events = Event.objects.all().filter(date__gte=today)
     events = events.values()
-    next_events = events[:10]
+    next_events = events.order_by('date').values()
+    # next_events = next_events[:10]
     events = json.dumps(list(events), cls=DjangoJSONEncoder)
+    next_events = json.dumps(list(next_events), cls=DjangoJSONEncoder)
     ev = json.loads(events)
     for i in range(len(ev)):
         ev[i]["tags"] = []

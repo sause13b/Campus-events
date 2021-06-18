@@ -3,7 +3,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <link rel="stylesheet" href="{% static '/map/css/indexcss.css' %}">
-<script type="text/javascript">var events =  JSON.parse('{{ events | safe }}');</script>
+<script type="text/javascript">
+    var events =  JSON.parse('{{ events | safe }}');
+    var next_events = JSON.parse('{{ next_events | safe }}');
+</script>
 <script src="{% static '/map/js/map_scripts.js' %}"></script>
 <head>
     <meta charset="UTF-8">
@@ -30,10 +33,10 @@
             </div>
             <p>
                 <h3 class="events_label">Близжайшие эвенты:</h3>
-                <ul class="events_list">
-                    {% for event in next_events %}
-                        <li class="event"><span>{{ event.name }}</span><span>{{ event.date }}</span></li>
-                    {% endfor %}
+                <ul class="events_list" id="events_list">
+{#                    {% for event in next_events %}#}
+{#                        <li class="event"><span>{{ event.name }}</span><span>{{ event.date }}</span></li>#}
+{#                    {% endfor %}#}
                 </ul>
             </p>
             <p class="map_legend">
