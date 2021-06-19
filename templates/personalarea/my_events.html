@@ -1,34 +1,5 @@
-<!DOCTYPE html>
-{% load static %}
-<html lang="rus">
-	<head>
-		<meta charset="UTF-8">
-		<link rel="stylesheet" href={% static "personalarea/css/style.css" %}>
-		<title>Запланированные ивенты</title>
-	</head>
-	<body>
-		<div class="wrapper">
-			<div class="left_window">
-				<div class="back_to_main_page_bottom_area">
-					<div class="back_to_main_page_bottom_swadow">
-						<a href="{% url 'map' %}" class="back_to_main_bottom">Вернуться на главную</a>
-					</div>
-				</div>
-				<nav class="personal_area_navigation">
-					<div class="navigation_panel">
-						<a href="{% url 'show_personalarea' %}" class="navigation_bottom">Профиль</a>
-					</div>
-					<div class="navigation_panel">
-						<a href="{% url 'planed_events' %}" class="navigation_bottom">Запланированные ивенты</a>
-					</div>
-					<div class="navigation_panel">
-						<a href="{% url 'ended_events' %}" class="navigation_bottom">Посещенные ивенты</a>
-					</div>
-                    <div class="navigation_panel">
-						<a href="{% url 'my_events' %}" class="navigation_bottom">Мои ивенты</a>
-					</div>
-				</nav>
-			</div>
+{% extends 'personalarea/index.html' %}
+{% block right_windows %}
 			<div class="right_window">
 				<main>
                     {% if user.is_authenticated %}
@@ -40,6 +11,4 @@
                     {% endif %}
 				</main>
 			</div>
-		</div>
-	</body>
-</html>
+{% endblock %}
