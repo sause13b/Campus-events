@@ -17,6 +17,18 @@ def show_form_of_event(request, pk):
     return render(request, 'formofevent/form_of_event.html', context)
 
 
+def show_form_of_event_pa(request, pk):
+    event = Event.objects.get(id=pk)
+    members_count = event.members_list.count()
+    if event.members:
+        try:
+            event.members = int(event.members)
+        except ValueError:
+            pass
+    context = {'event': event, 'count': members_count}
+    return render(request, 'formofevent/back_form.html', context)
+
+
 def party(request, pk):
     event = Event.objects.get(id=pk)
     user = request.user

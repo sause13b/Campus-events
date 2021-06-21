@@ -5,7 +5,7 @@
                     {% if user.is_authenticated %}
                         {% for event in user_events %}
                        <li class="events_list">
-                           <a class="event_name" href="{% url 'show_form_of_event' event.id %}">{{ event.name }}</a>
+                           <a class="event_name" href="{% url 'back_form' event.id %}">{{ event.name }}</a>
                        </li>
                         {% endfor %}
                     {% endif %}

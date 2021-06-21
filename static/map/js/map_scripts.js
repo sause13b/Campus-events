@@ -65,7 +65,7 @@ function my_map() {
             },
         });
         g_events.push(marker);
-        let content = marker.title + '<br>' + '<a href="'+url+'">'+'Ссылка'+'</a>';
+        let content = marker.title + '<br>' + 'Участников: ' + events[i]['count'] +'/'+ events[i]['members'] + '<br>' + '<a href="'+url+'">'+'Подробнее...'+'</a>';
         infowindow[i] = new google.maps.InfoWindow({
             content: content,
         });
@@ -105,14 +105,20 @@ window.onload = function() {
     let ul = document.getElementById('events_list')
     for (let i = 0; i < events.length; i++) {
         let name = events[i]['name'];
-        let date = events[i]['tags'];
+        let date = events[i]['date'];
         let name_span = document.createElement('span');
         let date_span = document.createElement('span');
         name_span.appendChild(document.createTextNode(name));
         date_span.appendChild(document.createTextNode(date));
+        let url = "/eventform/"+events[i]["id"];
+        let a = document.createElement('a');
+        a.href = url;
+        a.appendChild(name_span);
+        a.appendChild(date_span);
+        a.classList.add('ev');
+        a.target = "_blank";
         let li = document.createElement('li');
-        li.appendChild(name_span);
-        li.appendChild(date_span);
+        li.appendChild(a);
         li.classList.add('event');
         li.classList.add('show_none');
         ul.appendChild(li);
@@ -129,14 +135,14 @@ window.onload = function() {
                     sibling.classList.remove('clicked_event');
                 }
             }
-            for(let i = 0; i < g_events.length; i++) {
-                infowindow[i].close();
-                if (g_events[i].title == name) {
-                    g_events[i].setVisible(true);
-                    map.panTo(g_events[i].position);
-                    infowindow[i].open(map, g_events[i]);
-                }
-            }
+            // for(let i = 0; i < g_events.length; i++) {
+            //     infowindow[i].close();
+            //     if (g_events[i].title == name) {
+            //         g_events[i].setVisible(true);
+            //         map.panTo(g_events[i].position);
+            //         infowindow[i].open(map, g_events[i]);
+            //     }
+            // }
         })
     }
 

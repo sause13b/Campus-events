@@ -68,11 +68,15 @@
                         </div>
                     </div>
                     <div class="bottom_nav">
-                        <div class = "create_button_container">
-                            <div class = "button create_button_shadow">
-                                <a class="create_button" style = "color: white; border-radius: 15px; background-color: cornflowerblue;" href="{% url 'map' %}">Назад на карту</a>
+                        {% block back %}
+                        <a href="{% url 'map' %}">
+                            <div class = "create_button_container">
+                                <div class = "button create_button_shadow">
+                                    <div class="create_button" style = "color: white; border-radius: 15px; background-color: cornflowerblue; padding: 10px" >Назад на карту</div>
+                                </div>
                             </div>
-                        </div>
+                        </a>
+                        {% endblock %}
                         <div class="create_button_container">
                             <div class="button create_button_shadow">
                                 {% if request.user == event.creator %}

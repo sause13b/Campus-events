@@ -13,11 +13,11 @@ def render_map(request):
     today = datetime.date(today.year, today.month, today.day)
     tags = Tag.objects.all()
     events = Event.objects.all().filter(date__gte=today).order_by('date')
-    events = events.values()
-    events = json.dumps(list(events), cls=DjangoJSONEncoder)
-    ev = json.loads(events)
+    ev = json.dumps(list(events.values()), cls=DjangoJSONEncoder)
+    ev = json.loads(ev)
     for i in range(len(ev)):
         ev[i]["tags"] = []
+        ev[i]["count"] = events[i].members_list.count()
 
     for tag in tags:
         events_tag = Event.objects.filter(tags__name=tag)
