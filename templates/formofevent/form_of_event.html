@@ -69,28 +69,22 @@
                     </div>
                     <div class="bottom_nav">
                         {% block back %}
-                        <a href="{% url 'map' %}">
                             <div class = "create_button_container">
-                                <div class = "button create_button_shadow">
-                                    <div class="create_button" style = "color: white; border-radius: 15px; background-color: cornflowerblue; padding: 10px" >Назад на карту</div>
-                                </div>
+                                    <a class="button_link"  href="{% url 'map' %}" >Назад на карту</a>
                             </div>
-                        </a>
                         {% endblock %}
                         <div class="create_button_container">
-                            <div class="button create_button_shadow">
                                 {% if request.user == event.creator %}
-                                    <a class="button" style="color: white; border-radius: 15px; background-color: cornflowerblue; padding:10px 0px"href="{% url 'edit_party' event.id %}">Редактировать</a>
+                                    <a class="button_link" href="{% url 'edit_party' event.id %}">Редактировать</a>
                                 {% elif request.user not in event.members_list.all %}
                                     {% if count < event.members %}
-                                        <a class="button" style="color: white; border-radius: 15px; background-color: cornflowerblue;padding:10px 0px"href="{% url 'party' event.id %}">Участвовать</a>
+                                        <a class="button_link" href="{% url 'party' event.id %}">Участвовать</a>
                                     {% else %}
-                                        <a class="button" style="color: white; border-radius: 15px; background-color: cornflowerblue;padding:10px 0px; background-color: grey" href="#">Участвовать</a>
+                                        <a class="button_link" style="background-color: grey" href="#">Участвовать</a>
                                     {% endif %}
                                 {% else %}
-                                    <a class="button" style="color: white; border-radius: 15px; background-color: cornflowerblue;padding:10px 0px"href="{% url 'leave_party' event.id %}">Не участвовать</a>
+                                    <a class="button_link" href="{% url 'leave_party' event.id %}">Не участвовать</a>
                                 {% endif %}
-                            </div>
                         </div>
                     </div>
                 </div>

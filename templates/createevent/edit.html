@@ -2,17 +2,11 @@
 
 {% block nav %}
     <div class="bottom_nav">
-    <a href="{% url 'show_form_of_event' pk %}">
         <div class = "create_button_container">
-            <div class = "button create_button_shadow">
-                <div class="create_button" style = "color: white; border-radius: 15px; background-color: cornflowerblue" >Отменить</div>
-            </div>
+            <a class="button_link" href="{% url 'show_form_of_event' pk %}" >Отменить</a>
         </div>
-    </a>
         <div class = "create_button_container">
-            <div class = "button create_button_shadow">
-                <button class="create_button" type="submit" style = "color: white; border-radius: 15px; background-color: cornflowerblue; margin: 10px 0px" form="form-main">Сохранить</button>
-            </div>
+                <button class="button_link" type="submit"  form="form-main">Сохранить</button>
         </div>
     </div>
 

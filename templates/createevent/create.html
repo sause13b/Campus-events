@@ -128,17 +128,11 @@
                             {% endfor %}
                     {% block nav %}
                         <div class="bottom_nav">
-                            <a href="{% url 'map' %}">
-                                <div class = "create_button_container">
-                                    <div class = "button create_button_shadow">
-                                        <div class="create_button" style = "color: white; border-radius: 15px; background-color: cornflowerblue; padding: 10px">Отменить</div>
-                                    </div>
-                                </div>
-                            </a>
                             <div class = "create_button_container">
-                                <div class = "button create_button_shadow">
-                                    <button class="create_button" type="submit" style = "color: white; border-radius: 15px; background-color: cornflowerblue" form="form-main">Создать мероприятие</button>
-                                </div>
+                                <a class="button_link" href="{% url 'map' %}" >Отменить</a>
+                            </div>
+                            <div class = "create_button_container">
+                                    <button class="button_link" style="width: 80px;" type="submit"  form="form-main">Создать</button>
                             </div>
                         </div>
                     {% endblock %}

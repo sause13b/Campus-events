@@ -76,26 +76,6 @@ header{
     max-height: 50px;
     }
 
-.back_button_container{
-    display: flex;
-    justify-content: space-evenly;
-    flex-direction: row;
-    align-items: center;
-    width: 20%;
-    height: 50px;
-    }
-
-.back_button_shadow{
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    border-radius: 3px;
-    text-align: center;
-    width: 50px;
-    height: 25px;
-    background-color: rgb(0,150,213);
-    }
-
 .title_container{
     display: flex;
     justify-content: space-around;
@@ -108,26 +88,6 @@ header{
 .title{
    text-align: center;
     font-style: italic;
-    }
-
-.lk_button_container{
-    display: flex;
-    justify-content: space-evenly;
-    flex-direction: row;
-    align-items: center;
-    width: 20%;
-    height: 50px;
-    }
-
-.lk_button_shadow{
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    border-radius: 3px;
-    text-align: center;
-    width: 50px;
-    height: 25px;
-    background-color: rgb(0,150,213);
     }
 
 .main_content{
@@ -298,17 +258,6 @@ footer{
     align-items: center;
 }
 
-.create_button_shadow{
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    border-radius: 5px;
-    text-align: center;
-    width: 100px;
-    height: 100%;
-    background-color: cornflowerblue;
-}
-
 .tags_container{
     align-self: center;
     margin-top: 10px;
@@ -376,4 +325,21 @@ textarea {
     bottom: 20px;
     justify-content: space-between;
     padding: 0px 30px;
+}
+
+.button_link{
+    color: white;
+    background-color: rgb(0,103,177);
+    border-radius: 5px;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    transition: .5s;
+}
+
+.button_link:hover {
+	background-color: rgb(0,123,175);
+}
+.button_link:active {
+	box-shadow: 0 0 0 2pt rgb(191,229,244);
 }
