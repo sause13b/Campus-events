@@ -155,7 +155,7 @@ window.onload = function() {
         }
     })
 
-    var min_ = Math.min(events.length, 10);
+    var min_ = Math.min(events.length, 5);
     for(let i = 0; i < min_; i++) {
         ev[i].classList.remove('show_none');
         next_events.push(ev[i]);

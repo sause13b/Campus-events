@@ -4,11 +4,13 @@ from createEvent.models import *
 from django.contrib.auth.decorators import login_required
 import datetime
 import json
+from decouple import config
 
 
 
 @login_required(login_url='login')
 def render_map(request):
+    api = config('GOOGLE_MAPS_API_KEY')
     today = datetime.datetime.today()
     today = datetime.date(today.year, today.month, today.day)
     tags = Tag.objects.all()
@@ -30,7 +32,7 @@ def render_map(request):
                 i += 1
 
     events = json.dumps(ev)
-    data = {'tags': tags, 'events': events}
+    data = {'tags': tags, 'events': events, 'api': api}
     return render(request, 'map/index.html', data)
 
 

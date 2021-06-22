@@ -2,12 +2,12 @@
 
 <!DOCTYPE html>
 <html lang="en">
-<link rel="stylesheet" href="{% static '/map/css/indexcss.css' %}">
+<link rel="stylesheet" href="{% static 'map/css/indexcss.css' %}">
 <script type="text/javascript">
     var events =  JSON.parse('{{ events | safe }}');
     {#var next_events = JSON.parse('{{ next_events | safe }}');#}
 </script>
-<script src="{% static '/map/js/map_scripts.js' %}"></script>
+<script src="{% static 'map/js/map_scripts.js' %}"></script>
 <head>
     <meta charset="UTF-8">
     <title>Эвенты на кампусе</title>
@@ -18,7 +18,7 @@
         <section class="side_menu">
             <div class="top_menu">
                 <a href="{% url 'show_personalarea' %}" class="home">
-                    <img src="{% static '/map/icons/home.png' %}">
+                    <img src="{% static 'map/icons/home.png' %}">
                     <span>Личный кабинет</span></a>
                 <span><a href="{% url 'logout' %}">Выйти</a></span>
             </div>
@@ -41,9 +41,9 @@
             </p>
             <p class="map_legend">
                 Легенда карты(Нажмите, чтобы скрыть ненужные маркеры):
-                <p class="legend_unit"><img src="{% static '/map/icons/orange.png' %}"> - Жилые корпуса</p>
-                <p class="legend_unit"><img src="{% static '/map/icons/green.png' %}"> - Учебные корпуса</p>
-                <p class="legend_unit"><img src="{% static '/map/icons/red.png' %}"> - Эвенты</p>
+                <p class="legend_unit"><img src="{% static 'map/icons/orange.png' %}"> - Жилые корпуса</p>
+                <p class="legend_unit"><img src="{% static 'map/icons/green.png' %}"> - Учебные корпуса</p>
+                <p class="legend_unit"><img src="{% static 'map/icons/red.png' %}"> - Эвенты</p>
             </p>
         </section>
 
