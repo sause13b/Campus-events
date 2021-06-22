@@ -37,7 +37,9 @@
                     {% block left_panel %}
 						<div class="main_information_left_panel">
 							<div class="profile_picture">
+                                {% if user_.avatar %}
                             <img src="{{ user_.avatar.url }}" width="100%" height="100%">
+                                {% endif %}
 							</div>
                             <div class="edit_button_area">
                                 <a href="edit" class="edit_button">Изменить</a>
