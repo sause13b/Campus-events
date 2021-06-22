@@ -299,7 +299,7 @@ main
 	padding: 2% ;
 }
 
-.event_name:visited {
+.event_name{
 	color: black;
 }
 

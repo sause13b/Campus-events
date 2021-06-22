@@ -32,3 +32,7 @@ def render_map(request):
     events = json.dumps(ev)
     data = {'tags': tags, 'events': events}
     return render(request, 'map/index.html', data)
+
+
+def render_us(request):
+    return render(request, 'anekdot/aboutus.html')

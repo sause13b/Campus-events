@@ -1,4 +1,5 @@
 {% extends 'personalarea/index.html' %}
+{% load static %}
 {% block profile_information %}
     <form method="POST" id="submitbutton" class="profile_information_panel_column2">
     {% csrf_token %}
@@ -13,12 +14,7 @@
                     {{ form.last_name }}
             </div>
             <div class="profile_information_panel_column2_row_change">
-
-            </div>
-            <div class="profile_information_panel_column2_row_change">
                     {{ form.email }}
-            </div>
-            <div class="profile_information_panel_column2_row_change">
             </div>
     </div>
     </form>
@@ -27,11 +23,9 @@
 {% block left_panel %}
     <div class="main_information_left_panel">
         <div class="profile_picture">
+            <img src="{% static '/map/icons/us.jpg' %}" width="100%" height="100%">
+        </div>
 
-        </div>
-        <div class="profile_picture_information">
-            Макс размер и прочее
-        </div>
         <div class="edit_button_area">
             <button type="submit" form="submitbutton" class="edit_button">Применить</button>
         </div>
