@@ -1,19 +1,13 @@
-# from django.db import models
-# from django.contrib.auth.models import AbstractUser, User
-#
-#
-# class PersonalAreaInformation(models.Model):
-#     user = models.OneToOneField(User, on_delete=models.CASCADE)
-#     sex_choice = (
-#         ('М', 'Мужской'),
-#         ('Ж', 'Женский'),
-#     )
-#     login = models.CharField(max_length=20)
-#     date_of_birth = models.DateField()
-#     sex = models.CharField(max_length=1, choices=sex_choice)
-#     corporate_email = models.TextField()
-#     personal_email = models.TextField()
-#     mobile_phone = models.TextField()
+from django.db import models
+from django.contrib.auth.models import User
 
+
+class ExtendedUser(models.Model):
+    user = models.OneToOneField(User, null=True, blank=True, on_delete=models.CASCADE)
+    phone = models.CharField(max_length=200, null=True)
+    avatar = models.ImageField(null=True, blank=True, upload_to="avatars/")
+
+    def __str__(self):
+        return self.user.username
 
 

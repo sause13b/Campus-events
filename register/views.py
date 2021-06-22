@@ -3,6 +3,7 @@ from .forms import RegisterForm
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from Campus_events.decorators import *
+from personalarea.models import *
 
 
 @unauthenticated_user
@@ -11,7 +12,8 @@ def register(request):
     if request.method == "POST":
         form = RegisterForm(request.POST)
         if form.is_valid():
-            form.save()
+            user = form.save()
+            ExtendedUser.objects.create(user=user)
             return redirect('/login')
 
     return render(request, 'registration/register.html', {'form': form})
