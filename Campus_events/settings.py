@@ -28,7 +28,7 @@ SECRET_KEY = 'h-y^8ps(3y3aw)rn!f&y*gake@jphi==@5_tln*w8^5ji+25s('
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['campus-events-fefu.herokuapp.com']
 
 
 # Application definition
