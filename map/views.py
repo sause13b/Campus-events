@@ -7,7 +7,7 @@ import json
 
 
 
-# @login_required(login_url='login')
+@login_required(login_url='login')
 def render_map(request):
     today = datetime.datetime.today()
     today = datetime.date(today.year, today.month, today.day)
